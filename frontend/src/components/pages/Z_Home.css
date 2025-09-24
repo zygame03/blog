@@ -1,0 +1,65 @@
+/* App container */
+.app-container {
+  min-width: 800px;
+}
+
+/* Header Styles */
+.app-header {
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 64px;
+}
+
+/* Content Styles */
+.app-content {
+  padding: 0 10%;
+  margin-top: 40vh;
+}
+
+.app-profile {
+  animation: flyInLeft 1s ease-out forwards;
+}
+
+.app-outlet {
+  animation: flyInRight 1s ease-out forwards;
+}
+
+/* Row Styles */
+.app-row {
+  margin-top: 16px;
+}
+
+/* Footer Styles */
+.app-footer {
+  text-align: center;
+}
+
+/* 飞入动画 */
+@keyframes flyInLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes flyInRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+

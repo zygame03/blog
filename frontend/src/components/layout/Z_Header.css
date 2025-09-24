@@ -1,0 +1,17 @@
+/* Menu 整体改为 inline-flex，不占满父容器 */
+.z-header-menu {
+  display: flex;
+  min-width: 0; 
+  flex: auto;
+  justify-content: center;
+}
+
+/* MenuItem 的悬停效果 */
+.z-header-menu .ant-menu-item {
+  transition: transform 0.15s, color 0.15s; /* 平滑动画 */
+}
+
+.z-header-menu .ant-menu-item:hover {
+  transform: translateY(-3px) scale(1.1); /* 上浮4px，放大10% */
+  color: #ffffff; 
+}
