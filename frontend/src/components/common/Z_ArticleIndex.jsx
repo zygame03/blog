@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import remarkToc from 'remark-toc';
+import { Card } from 'antd';
 
 const Z_ArticleIndex = ({ content }) => {
   const [toc, setToc] = useState([]);
@@ -20,7 +20,14 @@ const Z_ArticleIndex = ({ content }) => {
   }, [content]);
 
   return (
-    <div>
+    <Card 
+      style={{
+          marginBottom: 0, // 减小卡片之间的间距
+          padding: 0, // 减小卡片的内边距
+          borderRadius: 8, // 边角圆滑
+          boxShadow: '0 2px 8px rgba(0,0,0,0.15)' // 添加适度阴影提升卡片视觉层次
+        }}
+      >
       <h2>目录</h2>
       <ul>
         {toc.map((item, index) => (
@@ -29,7 +36,7 @@ const Z_ArticleIndex = ({ content }) => {
           </li>
         ))}
       </ul>
-    </div>
+    </Card>
   );
 };
 

@@ -1,14 +1,19 @@
-import React from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';// 划线、表、任务列表和直接url等的语法扩展
-import rehypeRaw from 'rehype-raw'// 解析标签，支持html语法
-
-//高亮的主题，还有很多别的主题，可以自行选择
+import { Card } from 'antd';
+import { Markdown } from '@ant-design/pro-editor';
 
 
 const Z_ArticleDetail = ({ content }) => {
   return (
-    <ReactMarkdown>{ content }</ReactMarkdown>
+    <Card 
+      style={{
+          marginBottom: 0, // 减小卡片之间的间距
+          padding: 0, // 减小卡片的内边距
+          borderRadius: 8, // 边角圆滑
+          boxShadow: '0 2px 8px rgba(0,0,0,0.15)' // 添加适度阴影提升卡片视觉层次
+        }}
+      >
+      <Markdown>{content}</Markdown>
+    </Card>
   );
 };
 

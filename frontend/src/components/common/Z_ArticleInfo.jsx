@@ -1,16 +1,14 @@
 import React from 'react';
 import { Avatar, Typography, Tag } from 'antd';
-import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
-import "./Z_ArticleInfo.css"
+import './Z_ArticleInfo.css';
 
 const { Title, Text } = Typography;
 
 const Z_ArticleInfo = ({ article }) => {
   const [height, setHeight] = useState(40); // vh
   const [opacity, setOpacity] = useState(1);
-  const { title, authorName, createdAt, cover, tags } = article;
+  const { title, authorName, createdAt, cover, tags, desc } = article;
 
   useEffect(() => {
     let ticking = false;
@@ -27,8 +25,8 @@ const Z_ArticleInfo = ({ article }) => {
         ticking = true;
       }
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
@@ -39,20 +37,25 @@ const Z_ArticleInfo = ({ article }) => {
       {/* 背景层 */}
       <div
         className="z-bg-image"
-        style={{ backgroundImage: `${article.cover}` }}
+        style={{ backgroundImage: `url(${cover})` }} // 确保 `cover` 是图片路径
       />
 
       {/* 文字层 */}
-      <div className="z-bg-text" style={{ opacity: opacity }}>
+      <div className="z-bg-text">
         <Title level={1}>{title}</Title>
-        <Text>{`By ${authorName} | ${new Date(createdAt).toLocaleDateString()}`}</Text>
-        <div style={{ marginTop: '10px' }}>
+        <Text type="secondary">{`By ${authorName} | ${new Date(createdAt).toLocaleDateString()}`}</Text>
+        <div>
           {tags?.map((tag, index) => (
             <Tag key={index} color="geekblue">
               {tag}
             </Tag>
           ))}
         </div>
+        {desc && (
+          <div className="z-description">
+            <Text>{desc}</Text>
+          </div>
+        )}
       </div>
     </div>
   );
