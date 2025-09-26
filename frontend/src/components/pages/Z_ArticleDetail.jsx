@@ -4,9 +4,9 @@ import { Layout, Row, Col} from 'antd';
 import axios from 'axios';
 
 // 引入样式表
-import './Z_Article.css';
+import './Z_ArticleDetail.css';
 import Z_Header from '../layout/Z_Header';
-import Z_ArticleDetail from '../common/Z_ArticleDetail';
+import Z_ArticleContent from '../common/Z_ArticleContent';
 import Z_ArticleIndex from '../common/Z_ArticleIndex';
 import Z_ArticleInfo from '../common/Z_ArticleInfo';
 
@@ -50,7 +50,7 @@ const Z_Article = () => {
               <Z_ArticleIndex content={article.content} />
             </Col>
             <Col span={18} className="article-outlet"> 
-              <Z_ArticleDetail content={article.content} />
+              <Z_ArticleContent content={article.content} />
             </Col>
           </Row>
         </Content>

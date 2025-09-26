@@ -1,10 +1,10 @@
-/* article container */
-.article-container {
+/* App container */
+.app-container {
   min-width: 800px;
 }
 
 /* Header Styles */
-.article-header {
+.app-header {
   padding: 0;
   position: sticky;
   top: 0;
@@ -16,30 +16,40 @@
 }
 
 /* Content Styles */
-.article-content {
+.app-content {
   padding: 0 10%;
-  margin-top: 40vh;
+  /* margin-top: 100vh; */
 }
 
-.article-profile {
-  animation: flyInLeft 1.2s ease-out forwards;
+.app-profile {
+  animation: fadeIn 2s ease-out forwards;
 }
 
-.article-outlet {
-  animation: flyInRight 1.2s ease-out forwards;
+.app-hotArticles {
+  animation: fadeIn 2s ease-out forwards;
 }
 
 /* Row Styles */
-.article-row {
+.app-row {
   margin-top: 16px;
 }
 
 /* Footer Styles */
-.article-footer {
+.app-footer {
   text-align: center;
 }
 
-/* 飞入动画 */
+/* 淡入动画 */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* 飞入动画
 @keyframes flyInLeft {
   0% {
     transform: translateX(-100%);
@@ -60,6 +70,6 @@
     transform: translateX(0);
     opacity: 1;
   }
-}
+} */
 
 

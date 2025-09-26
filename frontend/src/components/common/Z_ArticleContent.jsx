@@ -2,7 +2,7 @@ import { Card } from 'antd';
 import { Markdown } from '@ant-design/pro-editor';
 
 
-const Z_ArticleDetail = ({ content }) => {
+const Z_ArticleContent = ({ content }) => {
   return (
     <Card 
       style={{
@@ -17,4 +17,4 @@ const Z_ArticleDetail = ({ content }) => {
   );
 };
 
-export default Z_ArticleDetail;
+export default Z_ArticleContent;

@@ -8,10 +8,10 @@
 
 /* MenuItem 的悬停效果 */
 .z-header-menu .ant-menu-item {
-  transition: transform 0.15s, color 0.15s; /* 平滑动画 */
+  transition: transform 0.15s, color 0.15s; 
 }
 
 .z-header-menu .ant-menu-item:hover {
-  transform: translateY(-3px) scale(1.1); /* 上浮4px，放大10% */
+  transform: translateY(-3px) scale(1.05); 
   color: #ffffff; 
 }

@@ -16,7 +16,7 @@ const items = Array.from({ length: 3 }).map((_, index) => ({
   label: `nav ${index + 1}`,
 }));
 
-const Z_Home = () => {
+const Z_AboutMe = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -29,16 +29,6 @@ const Z_Home = () => {
         </Header>
 
         <Content className="app-content">
-          {/* <Z_Background className="app-background"/> */}
-
-          <Row gutter={16} className="app-row">
-            <Col span={6} className="app-profile">
-              <Z_Profile />
-            </Col>
-            <Col span={18} className="app-hotArticles">
-              <Z_HotArticles />
-            </Col>
-          </Row>
         </Content>
 
         <Footer className="app-footer">
@@ -49,4 +39,4 @@ const Z_Home = () => {
   );
 };
 
-export default Z_Home;
+export default Z_AboutMe;

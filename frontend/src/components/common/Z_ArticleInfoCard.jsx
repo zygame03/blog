@@ -13,45 +13,37 @@ const Z_ArticleInfoCard = ({ item }) => {
       <Card
         hoverable
         onClick={() => navigate(`/article/${item.id}`)}
-        className="article-info-card" // 使用外部 CSS 类
+        className="article-info-card"
+        cover={
+          <img
+            src={item.cover || 'avatar_0.jpg'}
+            className='card-image'
+          />
+        }
       >
-        <Row gutter={12}>
-          {/* 左侧封面图 */}
-          <Col flex="100px">
-            <img
-              src={item.cover || 'avatar_0.jpg'}
-              alt={item.title}
-              className="card-image"
-            />
-          </Col>
-
-          {/* 右侧内容 */}
-          <Col flex="auto">
-            <Title level={5} style={{ margin: 0 }}>
-              {item.title}
-            </Title>
-            <Paragraph ellipsis={{ rows: 2 }} style={{ margin: "4px 0" }}>
-              {item.desc}
-            </Paragraph>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <div>
-                {/* 处理 tags 为空的情况 */}
-                {item.tags && item.tags.length > 0 ? (
-                  item.tags.map((tag, idx) => (
-                    <Tag key={idx} color="blue">
-                      {tag}
-                    </Tag>
-                  ))
-                ) : (
-                  <Text type="secondary">暂无标签</Text>
-                )}
-              </div>
-              <Text type="secondary" style={{ fontSize: 12 }}>
-                {item.createdAt} {/* 显示发布时间 */}
-              </Text>
-            </div>
-          </Col>
-        </Row>
+        <Title level={4} style={{ margin: 0 }}>
+          {item.title}
+        </Title>
+        <Paragraph ellipsis={{ rows: 2 }} style={{ margin: "8px 0" }}>
+          {item.desc}
+        </Paragraph>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div>
+            {/* 处理 tags 为空的情况 */}
+            {item.tags && item.tags.length > 0 ? (
+              item.tags.map((tag, idx) => (
+                <Tag key={idx} color="blue">
+                  {tag}
+                </Tag>
+              ))
+            ) : (
+              <Text type="secondary">暂无标签</Text>
+            )}
+          </div>
+          <Text type="secondary" style={{ fontSize: 12 }}>
+            {item.createdAt} {/* 显示发布时间 */}
+          </Text>
+        </div>
       </Card>
     </Col>
   );

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { DownOutlined } from "@ant-design/icons"; 
 
 import "./Z_Background.css";
 
@@ -15,11 +16,16 @@ const texts = [
   "Hello, world",
 ];
 
+const height_t = 93;
+
+const printerSpeed = 1000 / 6;
+const pauseTime = 2000;
+
 const Z_Background = () => {
   const [current, setCurrent] = useState(0);     // 背景索引
   const [textIndex, setTextIndex] = useState(0); // 当前是哪一句话
   const [displayText, setDisplayText] = useState(""); // 打印中的文字
-  const [height, setHeight] = useState(40); // vh
+  const [height, setHeight] = useState(height_t); // vh
   const [opacity, setOpacity] = useState(1);
 
   // 背景切换
@@ -46,9 +52,9 @@ const Z_Background = () => {
         // 2s 后切换到下一句
         setTimeout(() => {
           setTextIndex((prev) => (prev + 1) % texts.length);
-        }, 2000);
+        }, pauseTime);
       }
-    }, 100);
+    }, printerSpeed);
 
     return () => clearInterval(interval);
   }, [textIndex]);
@@ -60,9 +66,9 @@ const Z_Background = () => {
         window.requestAnimationFrame(() => {
           const scrollY = window.scrollY;
           // 滚动 300px 内高度从 40vh -> 0vh
-          const newHeight = Math.max(0, 40 - (scrollY / 300) * 40);
+          const newHeight = Math.max(0, height_t - (scrollY / 800) * height_t);
           setHeight(newHeight);
-          setOpacity(newHeight / 40);
+          setOpacity(newHeight / 30);
           ticking = false;
         });
         ticking = true;
@@ -88,10 +94,15 @@ const Z_Background = () => {
 
       {/* 文字层 */}
       {height >= 20 && (
-        <div className="z-bg-text" style={{ opacity: opacity }}>
-          {displayText}
-          <span className="cursor">_</span>
-        </div>
+        <>
+          <div className="z-bg-text" style={{ opacity: opacity }}>
+            {displayText}
+            <span className="cursor">_</span>
+          </div>
+          <div className="z-bg-arrow" style={{ opacity: opacity }}>
+              <DownOutlined />
+          </div>
+        </>
       )}
     </div>
   );

@@ -1,0 +1,52 @@
+/* article container */
+.article-container {
+  min-width: 800px;
+}
+
+/* Header Styles */
+.article-header {
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 64px;
+}
+
+/* Content Styles */
+.article-content {
+  padding: 0 10%;
+  margin-top: 40vh;
+}
+
+.article-profile {
+  animation: fadeIn 1.5s ease-out forwards;
+}
+
+.article-outlet {
+  animation: fadeIn 1.5s ease-out forwards;
+}
+
+/* Row Styles */
+.article-row {
+  margin-top: 16px;
+}
+
+/* Footer Styles */
+.article-footer {
+  text-align: center;
+}
+
+/* 淡入动画 */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+

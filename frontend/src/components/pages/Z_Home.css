@@ -18,15 +18,15 @@
 /* Content Styles */
 .app-content {
   padding: 0 10%;
-  margin-top: 40vh;
+  /* margin-top: 100vh; */
 }
 
 .app-profile {
-  animation: flyInLeft 1s ease-out forwards;
+  animation: fadeIn 2s ease-out forwards;
 }
 
-.app-outlet {
-  animation: flyInRight 1s ease-out forwards;
+.app-hotArticles {
+  animation: fadeIn 2s ease-out forwards;
 }
 
 /* Row Styles */
@@ -39,7 +39,17 @@
   text-align: center;
 }
 
-/* 飞入动画 */
+/* 淡入动画 */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* 飞入动画
 @keyframes flyInLeft {
   0% {
     transform: translateX(-100%);
@@ -60,6 +70,6 @@
     transform: translateX(0);
     opacity: 1;
   }
-}
+} */
 
 
