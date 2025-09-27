@@ -6,9 +6,9 @@ const { Title, Text } = Typography;
 const SCROLL_DISTANCE = 1000;
 
 const Z_ArticleInfo = ({ article }) => {
-  const [height, setHeight] = useState(40); 
+  const [height, setHeight] = useState(50); 
   const [opacity, setOpacity] = useState(1);
-  const [bgColor, setBgColor] = useState('#8cc7ffff'); // 默认背景色
+  const [bgColor, setBgColor] = useState('rgba(86, 86, 86, 1)'); // 默认背景色
   const { title, authorName, createdAt, cover, tags, desc } = article;
 
   // 滚动收缩
@@ -18,9 +18,9 @@ const Z_ArticleInfo = ({ article }) => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const scrollY = window.scrollY;
-          const newHeight = Math.max(0, 40 - (scrollY / SCROLL_DISTANCE) * 40);
+          const newHeight = Math.max(0, 50 - (scrollY / SCROLL_DISTANCE) * 50);
           setHeight(newHeight);
-          setOpacity(newHeight / 40);
+          setOpacity(newHeight / 50);
           ticking = false;
         });
         ticking = true;

@@ -1,6 +1,6 @@
 import Z_Header from '../layout/Z_Header';
 import Z_Background from '../common/Z_Background';
-import Z_Profile from '../common/Z_Profile';
+import Z_ProfileCard from '../common/Z_ProfileCard';
 import Z_HotArticles from '../common/Z_HotArticles';
 
 import { Layout, Row, Col } from 'antd';
@@ -32,7 +32,7 @@ const Z_Home = () => {
                 animation: fadeInTime,
               }}
             >
-              <Z_Profile />
+              <Z_ProfileCard />
             </Col>
 
             <Col

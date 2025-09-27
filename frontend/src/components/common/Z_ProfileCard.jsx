@@ -21,7 +21,7 @@ const fallbackProfile = {
   notice: "Unknow"
 };
 
-const Z_Profile = () => {
+const Z_ProfileCard = () => {
   const [profile, setProfile] = useState(fallbackProfile);
   const [loading, setLoading] = useState(true);
 
@@ -51,7 +51,7 @@ const Z_Profile = () => {
         <Spin tip="加载中..." />
       ) : (
         <>
-          <Avatar size={80} src={profile.avatar} style={{ marginBottom: 12 }} />
+          <Avatar size={100} src={profile.avatar} style={{ marginBottom: 12 }} />
 
           <Title level={4}>{profile.name}</Title>
 
@@ -87,4 +87,4 @@ const Z_Profile = () => {
   );
 };
 
-export default Z_Profile;
+export default Z_ProfileCard;

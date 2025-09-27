@@ -1,30 +1,62 @@
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Z_Home from './components/pages/Z_Home';
-import Z_ArticleDetail from './components/pages/Z_ArticleDetail';  // 文章详情页
-import Z_AboutMe from './components/pages/Z_AboutMe';
-import Z_Article from './components/pages/Z_Article';
-import Z_Classic from './components/pages/Z_Classic';
-import Z_Links from './components/pages/Z_Links';
-
-import "./style/index.css"
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ConfigProvider } from "antd";
+import { AnimatePresence, motion } from "framer-motion";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <ConfigProvider
+import "./style/index.css";
+
+import Z_Home from "./components/pages/Z_Home";
+import Z_Article from "./components/pages/Z_Article";
+import Z_ArticleDetail from "./components/pages/Z_ArticleDetail";
+import Z_AboutMe from "./components/pages/Z_AboutMe";
+import Z_Classic from "./components/pages/Z_Classic";
+import Z_Links from "./components/pages/Z_Links";
+
+const variants = {
+  initial: { opacity: 0, x: 50 },
+  enter: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: -50 },
+};
+
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={location.pathname}
+        variants={variants}
+        initial="initial"
+        animate="enter"
+        exit="exit"
+        transition={{ duration: 0.3 }}
+        style={{ minHeight: "100vh" }}
+      >
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Z_Home />} />
+          <Route path="/home" element={<Z_Home />} />
+          <Route path="/article/:id" element={<Z_ArticleDetail />} />
+          <Route path="/article" element={<Z_Article />} />
+          <Route path="/about" element={<Z_AboutMe />} />
+          <Route path="/classic" element={<Z_Classic />} />
+          <Route path="/links" element={<Z_Links />} />
+        </Routes>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <ConfigProvider 
     theme={{
+        token: {
+          colorPrimary: '#a51d1dff',
+          fontSize: 18,
+        },
     }}
   >
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Z_Home />} />
-        <Route path="/home" element={<Z_Home />} />
-        <Route path="/article/:id" element={<Z_ArticleDetail />} />
-        <Route path="/article" element={<Z_Article />} />
-        <Route path='/about' element={<Z_AboutMe />} />
-        <Route path='/classic' element={<Z_Classic />} />
-        <Route path='/links' element={<Z_Links />} />
-      </Routes>
+      <AnimatedRoutes />
     </BrowserRouter>
   </ConfigProvider>
 );
