@@ -32,6 +32,14 @@ func GetHotArticles(c *gin.Context) {
 	c.JSON(200, articles)
 }
 
+func GetArticleTimeLine(c *gin.Context) {
+	db := databases.DB
+
+	articles, _, _ := models.GetArticlesByTime(db)
+
+	c.JSON(200, articles)
+}
+
 func GetArticleDetail(c *gin.Context) {
 	db := databases.DB
 	id, err := strconv.Atoi(c.Param("id"))

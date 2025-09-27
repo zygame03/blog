@@ -27,6 +27,7 @@ func main() {
 	{
 		article.GET("", routers.GetArticleList)
 		article.GET("/hotArticles", routers.GetHotArticles)
+		article.GET("/ArticlesTimeline", routers.GetArticleTimeLine)
 		article.GET("/:id", routers.GetArticleDetail)
 	}
 

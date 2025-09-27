@@ -1,7 +1,6 @@
+import React from 'react';
 import Z_Header from '../layout/Z_Header';
-import Z_Background from '../common/Z_Background';
-import Z_Profile from '../common/Z_Profile';
-import Z_HotArticles from '../common/Z_HotArticles';
+import Z_ArticleTimeline from '../common/Z_ArticleTimeLine';
 
 import { Layout, Row, Col } from 'antd';
 
@@ -9,7 +8,7 @@ const { Header, Content, Footer } = Layout;
 
 const fadeInTime = 'fadeIn 1s ease-out forwards'
 
-const Z_Home = () => {
+const Z_Article = () => {
   return (
     <div
       style={{
@@ -25,14 +24,13 @@ const Z_Home = () => {
             marginTop: 64,
           }}
         >
-          <Row gutter={16} style={{ marginTop: '12px' }}>
+          <Row gutter={16}>
             <Col
               span={6}
               style={{
                 animation: fadeInTime,
               }}
             >
-              <Z_Profile />
             </Col>
 
             <Col
@@ -41,9 +39,10 @@ const Z_Home = () => {
                 animation: fadeInTime,
               }}
             >
-              <Z_HotArticles />
+              <Z_ArticleTimeline />
             </Col>
           </Row>
+
         </Content>
         
         <Footer
@@ -71,4 +70,4 @@ const Z_Home = () => {
   );
 };
 
-export default Z_Home;
+export default Z_Article;

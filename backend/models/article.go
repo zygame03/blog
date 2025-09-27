@@ -47,3 +47,13 @@ func GetArticleByID(db *gorm.DB, ID int) (Article, error) {
 	db.Where("id = ?", ID).First(&article)
 	return article, nil
 }
+
+func GetArticlesByTime(db *gorm.DB) ([]Article, int64, error) {
+	var total int64
+	var articles []Article
+
+	db.Model(&Article{}).Count(&total)
+	db.Order("created_at").Find(&articles)
+
+	return articles, total, nil
+}

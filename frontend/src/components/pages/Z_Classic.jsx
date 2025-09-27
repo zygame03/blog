@@ -4,13 +4,13 @@ import Z_Background from '../common/Z_Background';
 import Z_Profile from '../common/Z_Profile';
 import Z_HotArticles from '../common/Z_HotArticles';
 
-import { Typography, Layout, theme, Row, Col} from 'antd';
+import { Typography, Layout, Row, Col } from 'antd';
 
 const { Title } = Typography;
 
 const { Header, Content, Footer } = Layout;
 
-const Z_AboutMe = () => {
+const Z_Classic = () => {
   return (
     <div
       style={{
@@ -23,7 +23,7 @@ const Z_AboutMe = () => {
         <Content
           style={{
             padding: '0 10%',
-            marginTop: 64, 
+            marginTop: 64,
             textAlign: 'center',
           }}
         >
@@ -42,4 +42,4 @@ const Z_AboutMe = () => {
   );
 };
 
-export default Z_AboutMe;
+export default Z_Classic;

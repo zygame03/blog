@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Avatar, Typography, Divider, Spin } from "antd";
+import { GithubOutlined, BilibiliOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { API_BASE } from "../../api";
 
@@ -41,10 +42,9 @@ const Z_Profile = () => {
     <Card 
       style={{
           textAlign: "center",
-          marginBottom: 0, // 减小卡片之间的间距
-          padding: 10, // 减小卡片的内边距
-          borderRadius: 8, // 边角圆滑
-          boxShadow: '0 2px 8px rgba(0,0,0,0.15)' // 添加适度阴影提升卡片视觉层次
+          marginBottom: 0, 
+          padding: 10, 
+          boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
         }}
       >
       {loading ? (
@@ -59,13 +59,22 @@ const Z_Profile = () => {
 
           <Divider />
 
-          <div>
-            <a href={profile.links.github} target="_blank" rel="noreferrer">
-              GitHub
+          <div style={{ fontSize: 32 }}>
+            <a 
+              href={profile.links.github} 
+              target="_blank" 
+              rel="noreferrer" 
+              style={{ marginRight: 16, color: '#000' }}
+            >
+              <GithubOutlined />
             </a>
-            {" | "}
-            <a href={profile.links.bilibili} target="_blank" rel="noreferrer">
-              B站
+            <a 
+              href={profile.links.bilibili} 
+              target="_blank" 
+              rel="noreferrer" 
+              style={{ color: '#000' }}
+            >
+              <BilibiliOutlined />
             </a>
           </div>
 
