@@ -15,7 +15,7 @@ const { Content, Footer } = Layout;
 const { Title } = Typography;
 
 // 数据
-const skills = ['React', 'Go', 'Rust', 'Linux', '数据库', 'NuttX'];
+const skills = ['C/C++', 'Python', 'React', 'Go', 'Rust', 'Linux', 'Git'];
 const hobbies = ['唱', '跳', 'Rap', '篮球'];
 const careerList = [
   { year: '2021', event: '大学', description: '信息安全', type: 'education' },

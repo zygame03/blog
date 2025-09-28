@@ -1,14 +1,13 @@
-package routers
+package handler
 
 import (
-	"my_web/backend/databases"
-	"my_web/backend/models"
+	"my_web/backend/internal/models"
 
 	"github.com/gin-gonic/gin"
 )
 
 func Home(c *gin.Context) {
-	db := databases.DB
+	db := GetDB(c)
 
 	author, _ := models.GetProfile(db)
 	hotArticles, _ := models.GetArticlesByPopular(db, 10)
