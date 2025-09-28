@@ -11,7 +11,7 @@ const Z_ArticleTimeline = () => {
   const [hotArticles, getArticles] = useState([])
   
   useEffect(() => {
-    axios.get(`${API_BASE}/api/article/ArticlesTimeline`)
+    axios.get(`${API_BASE}/api/article/articlesTimeline`)
       .then((res) => {
         getArticles(res.data); // axios 已经解析好了 JSON
       })
