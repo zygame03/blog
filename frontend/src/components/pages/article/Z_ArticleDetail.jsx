@@ -4,11 +4,11 @@ import { Layout, Row, Col, Spin } from 'antd';
 import axios from 'axios';
 import { motion } from 'framer-motion'; // 新增
 
-import Z_Header from '../layout/Z_Header';
-import Z_ArticleContent from '../common/Z_ArticleContent';
-import Z_ArticleIndex from '../common/Z_ArticleIndex';
+import Z_Header from '../../layout/Z_Header';
+import Z_ArticleContent from './components/Z_ArticleContent';
+import Z_ArticleIndex from './components/Z_ArticleIndex';
 
-import { API_BASE } from '../../api';
+import { API_BASE } from '../../../api';
 
 const { Header, Content, Footer } = Layout;
 

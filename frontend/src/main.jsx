@@ -5,12 +5,12 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import "./style/index.css";
 
-import Z_Home from "./components/pages/Z_Home";
-import Z_Article from "./components/pages/Z_Article";
-import Z_ArticleDetail from "./components/pages/Z_ArticleDetail";
-import Z_AboutMe from "./components/pages/Z_AboutMe";
-import Z_Classic from "./components/pages/Z_Classic";
-import Z_Links from "./components/pages/Z_Links";
+import Z_Home from "./components/pages/home/Z_Home";
+import Z_Article from "./components/pages/article/Z_Article";
+import Z_ArticleDetail from "./components/pages/article/Z_ArticleDetail";
+import Z_AboutMe from "./components/pages/about/Z_About";
+import Z_Classic from "./components/pages/classic/Z_Classic";
+import Z_Links from "./components/pages/links/Z_Links";
 
 const variants = {
   initial: { opacity: 0, x: 50 },

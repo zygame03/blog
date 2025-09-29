@@ -1,6 +1,6 @@
 import React from 'react';
-import Z_Header from '../layout/Z_Header';
-import Z_ArticleTimeline from '../common/Z_ArticleTimeLine';
+import Z_Header from '../../layout/Z_Header';
+import Z_ArticleTimeline from './components/Z_ArticleTimeline';
 
 import { Layout, Row, Col } from 'antd';
 

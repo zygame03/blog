@@ -1,7 +1,7 @@
-import Z_Header from '../layout/Z_Header';
-import Z_Background from '../common/Z_Background';
-import Z_ProfileCard from '../common/Z_ProfileCard';
-import Z_HotArticles from '../common/Z_HotArticles';
+import Z_Header from '../../layout/Z_Header';
+import Z_Background from './components/Z_Background';
+import Z_ProfileCard from '../../common/Z_ProfileCard';
+import Z_HotArticles from './components/Z_HotArticles';
 
 import { Layout, Row, Col } from 'antd';
 

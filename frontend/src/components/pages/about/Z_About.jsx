@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import { Layout, Row, Col, Typography } from 'antd';
 import axios from 'axios';
 
-import Z_Header from '../layout/Z_Header';
-import Z_ProfileCard from '../common/Z_ProfileCard';
-import Z_SkillsCard from '../common/Z_SkillsCard';
-import Z_HobbiesCard from '../common/Z_HobbiesCard';
-import Z_CareerTimeline from '../common/Z_CareerTimeline';
-import Z_AboutSite from '../common/Z_AboutSite';
+import Z_Header from '../../layout/Z_Header';
+import Z_ProfileCard from '../../common/Z_ProfileCard';
+import Z_SkillsCard from './components/Z_SkillsCard';
+import Z_HobbiesCard from './components/Z_HobbiesCard';
+import Z_CareerTimeline from './components/Z_CareerTimeline';
+import Z_AboutSite from './components/Z_AboutSite';
 
-import { API_BASE } from '../../api';
+import { API_BASE } from '../../../api';
 
 const { Content, Footer } = Layout;
 const { Title } = Typography;

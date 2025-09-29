@@ -1,5 +1,4 @@
-import Z_Header from '../layout/Z_Header';
-
+import Z_Header from '../../layout/Z_Header';
 
 import { Typography, Layout, Row, Col } from 'antd';
 
@@ -7,7 +6,7 @@ const { Title } = Typography;
 
 const { Header, Content, Footer } = Layout;
 
-const Z_Classic = () => {
+const Z_Links = () => {
   return (
     <div
       style={{
@@ -39,4 +38,4 @@ const Z_Classic = () => {
   );
 };
 
-export default Z_Classic;
+export default Z_Links;

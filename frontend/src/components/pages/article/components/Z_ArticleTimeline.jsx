@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Timeline, Typography, Tag } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
-import { API_BASE } from '../../api';
+import { API_BASE } from '../../../../api';
 
 const { Title, Text } = Typography;
 

@@ -3,9 +3,9 @@ import { Card, Row, Col, Tag, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import Z_ArticleInfoCard from './Z_ArticleInfoCard'; 
+import Z_ArticleInfoCard from "./Z_ArticleInfoCard";
 
-import { API_BASE } from "../../api";
+import { API_BASE } from "../../../../api";
 
 const { Title, Paragraph, Text } = Typography;
 
