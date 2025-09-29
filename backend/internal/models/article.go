@@ -12,14 +12,14 @@ const (
 
 type Article struct {
 	Model
-	Title      string   `json:"title"`
-	Desc       string   `json:"desc" gorm:"text"`
-	Content    string   `json:"content" gorm:"text"`
-	AuthorName string   `json:"authorName"`
-	Views      uint     `json:"views"`
-	Tags       []string `json:"tags" gorm:"json"`
-	Cover      string   `json:"cover"`
-	Status     uint     `json:"status"`
+	Title      string `json:"title"`
+	Desc       string `json:"desc" gorm:"text"`
+	Content    string `json:"content" gorm:"text"`
+	AuthorName string `json:"authorName"`
+	Views      uint   `json:"views"`
+	Tags       string `json:"tags"`
+	Cover      string `json:"cover"`
+	Status     uint   `json:"status"`
 }
 
 // 获取所有文章

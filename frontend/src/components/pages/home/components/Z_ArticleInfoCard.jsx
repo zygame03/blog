@@ -44,13 +44,17 @@ const Z_ArticleInfoCard = ({ item }) => {
         </Paragraph>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div>
-            {/* 处理 tags 为空的情况 */}
-            {item.tags && item.tags.length > 0 ? (
-              item.tags.map((tag, idx) => (
-                <Tag key={idx} color="blue">
-                  {tag}
-                </Tag>
-              ))
+            {item.tags && item.tags.trim() !== "" ? (
+              item.tags
+                .replace(/^\[|\]$/g, '')
+                .split(",")                   // 按逗号切分
+                .map(tag => tag.trim())       // 去掉前后空格
+                .filter(tag => tag.length > 0) // 过滤掉空字符串
+                .map((tag, idx) => (
+                  <Tag key={idx} color="blue">
+                    {tag}
+                  </Tag>
+                ))
             ) : (
               <Text type="secondary">暂无标签</Text>
             )}

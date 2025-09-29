@@ -26,7 +26,7 @@ const Z_ProfileCard = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`${API_BASE}/api/profile`)
+    axios.get(`${API_BASE}/api/user/profile`)
       .then((res) => {
         setProfile(res.data); // axios 已经解析好了 JSON
         setLoading(false);

@@ -22,11 +22,27 @@ const Z_ArticleContent = ({ article }) => {
       <Text type="secondary">
         {`${authorName} | ${new Date(createdAt).toLocaleDateString()}`}
       </Text>
-      <div style={{ marginTop: 8 }}>
+      <div>
+        {tags && tags.trim() !== "" ? (
+          tags
+            .replace(/^\[|\]$/g, '')
+            .split(",")                   // 按逗号切分
+            .map(tag => tag.trim())       // 去掉前后空格
+            .filter(tag => tag.length > 0) // 过滤掉空字符串
+            .map((tag, idx) => (
+              <Tag key={idx} color="blue">
+                {tag}
+              </Tag>
+            ))
+        ) : (
+          <Text type="secondary">暂无标签</Text>
+        )}
+      </div>
+      {/* <div style={{ marginTop: 8 }}>
         {tags?.map((tag, idx) => (
           <Tag key={idx} color="geekblue">{tag}</Tag>
         ))}
-      </div>
+      </div> */}
       {desc && (
         <div style={{ marginTop: 8, fontSize: 20 }}>
           <Text>{desc}</Text>
