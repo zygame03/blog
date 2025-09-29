@@ -17,7 +17,7 @@ func (l Links) Value() (driver.Value, error) {
 	return json.Marshal(l)
 }
 
-func (l *Links) Scan(value interface{}) error {
+func (l *Links) Scan(value any) error {
 	bytes, ok := value.([]byte)
 	if !ok {
 		return fmt.Errorf("Links: Scan source is not []byte")

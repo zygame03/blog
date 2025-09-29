@@ -2,7 +2,7 @@ package main
 
 import (
 	"log"
-	"my_web/backend/config"
+	"my_web/backend/internal/global"
 	"my_web/backend/internal/middleware"
 	"my_web/backend/internal/routers"
 	"time"
@@ -23,12 +23,12 @@ func main() {
 		MaxAge:           12 * time.Hour,
 	}))
 
-	conf, err := config.ReadConfig(config.CONFIG_PATH)
+	conf, err := global.ReadConfig(global.CONFIG_PATH)
 	if err != nil {
 		log.Fatalf("加载配置失败: %v", err)
 	}
 
-	db := config.InitDatabase(&conf.Database)
+	db := global.InitDatabase(&conf.Database)
 
 	r.Use(middleware.WithGormDB(db))
 

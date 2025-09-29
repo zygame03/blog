@@ -22,7 +22,26 @@ type Article struct {
 	Status     uint     `json:"status"`
 }
 
-func GetArticles(db *gorm.DB, page, pageSize int) ([]Article, int64, error) {
+// 获取所有文章
+func GetArticlesList(db *gorm.DB) ([]Article, int64, error) {
+	var articles []Article
+	var total int64
+
+	result := db.Model(&Article{}).Count(&total)
+	if result.Error != nil {
+		return nil, 0, result.Error
+	}
+
+	result = db.Find(&articles)
+	if result.Error != nil {
+		return nil, 0, result.Error
+	}
+
+	return articles, total, nil
+}
+
+// 分页查找
+func GetArticlesByPage(db *gorm.DB, page, pageSize int) ([]Article, int64, error) {
 	var articles []Article
 	var total int64
 
@@ -39,14 +58,25 @@ func GetArticles(db *gorm.DB, page, pageSize int) ([]Article, int64, error) {
 	return articles, total, nil
 }
 
-func GetArticlesByPopular(db *gorm.DB, number int) ([]Article, error) {
+// 获取热门文章，目前只基于view数，后续增加其他项综合判断
+func GetArticlesByPopular(db *gorm.DB, limit int) ([]Article, error) {
 	var articles []Article
+	var result *gorm.DB
 
-	db.Order("views").Limit(number).Find(&articles)
+	if limit == 0 {
+		result = db.Order("views").Find(&articles)
+	} else {
+		result = db.Order("views").Limit(limit).Find(&articles)
+	}
+
+	if result.Error != nil {
+		return nil, result.Error
+	}
 
 	return articles, nil
 }
 
+// 通过ID获取文章
 func GetArticleByID(db *gorm.DB, ID int) (Article, error) {
 	var article Article
 
@@ -55,12 +85,18 @@ func GetArticleByID(db *gorm.DB, ID int) (Article, error) {
 	return article, nil
 }
 
-func GetArticlesByTime(db *gorm.DB) ([]Article, int64, error) {
+// 按时间排序获取前n篇文章
+func GetArticlesByTime(db *gorm.DB, limit int) ([]Article, int64, error) {
 	var total int64
 	var articles []Article
 
 	db.Model(&Article{}).Count(&total)
-	db.Order("created_at").Find(&articles)
+	db.Order("created_at").Limit(limit).Find(&articles)
 
 	return articles, total, nil
+}
+
+// Todo！
+func GetArticlesByTag(db *gorm.DB, limit int) ([]Article, error) {
+	return nil, nil
 }

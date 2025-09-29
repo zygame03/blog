@@ -9,12 +9,15 @@ import (
 
 type Article struct{}
 
-func (*Article) GetArticleList(c *gin.Context) {
+type ArticleTitle struct {
+}
+
+func (*Article) GetAllArticles(c *gin.Context) {
 	page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
 	pageSize, _ := strconv.Atoi(c.DefaultQuery("pageSize", "10"))
 
 	db := GetDB(c)
-	articles, total, _ := models.GetArticles(db, page, pageSize)
+	articles, total, _ := models.GetArticlesList(db)
 
 	c.JSON(200, gin.H{
 		"data":     articles,
@@ -32,14 +35,16 @@ func (*Article) GetHotArticles(c *gin.Context) {
 	c.JSON(200, articles)
 }
 
+// 获取文章时间线
 func (*Article) GetArticleTimeLine(c *gin.Context) {
 	db := GetDB(c)
 
-	articles, _, _ := models.GetArticlesByTime(db)
+	articles, _, _ := models.GetArticlesByTime(db, 10)
 
 	c.JSON(200, articles)
 }
 
+// 获取文章详情（带正文）
 func (*Article) GetArticleDetail(c *gin.Context) {
 	db := GetDB(c)
 	id, err := strconv.Atoi(c.Param("id"))

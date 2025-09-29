@@ -19,7 +19,7 @@ func RegisterHandlers(r *gin.Engine) {
 func registerArticleHandler(r *gin.Engine) {
 	article := r.Group("api/article")
 	{
-		article.GET("", articleAPI.GetArticleList)
+		article.GET("", articleAPI.GetAllArticles)
 		article.GET("/hotArticles", articleAPI.GetHotArticles)
 		article.GET("/articlesTimeline", articleAPI.GetArticleTimeLine)
 		article.GET("/:id", articleAPI.GetArticleDetail)

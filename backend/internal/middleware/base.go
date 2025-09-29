@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"my_web/backend/config"
+	"my_web/backend/internal/global"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -9,7 +9,7 @@ import (
 
 func WithGormDB(db *gorm.DB) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		ctx.Set(config.DATABASE, db)
+		ctx.Set(global.DATABASE, db)
 		ctx.Next()
 	}
 }

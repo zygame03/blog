@@ -1,4 +1,4 @@
-package config
+package global
 
 const (
 	CONFIG_PATH = "config.json"
