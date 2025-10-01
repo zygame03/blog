@@ -40,17 +40,22 @@ const Z_ArticleTimeline = () => {
               <Text type="secondary">{`By ${article.authorName} | ${new Date(article.createdAt).toLocaleDateString()}`}</Text>
             </div>
             <div>
-              {article.tags && article.tags.length > 0 ? (
-                article.tags.map((tag, idx) => (
+            {article.tags && article.tags.trim() !== "" ? (
+              article.tags
+                .replace(/^\[|\]$/g, '')
+                .split(",")                   // 按逗号切分
+                .map(tag => tag.trim())       // 去掉前后空格
+                .filter(tag => tag.length > 0) // 过滤掉空字符串
+                .map((tag, idx) => (
                   <Tag key={idx} color="blue">
                     {tag}
                   </Tag>
                 ))
-              ) : (
-                <Text type="secondary">暂无标签</Text>
-              )}
-            </div>
-            <div style={{ marginTop: 8 }}>
+            ) : (
+              <Text type="secondary">暂无标签</Text>
+            )}
+          </div>
+            <div>
               <Text ellipsis={{ rows: 2 }} style={{ maxWidth: '300px' }}>
                 {article.desc}
               </Text>

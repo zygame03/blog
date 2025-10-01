@@ -11,7 +11,6 @@ const Z_HobbiesCard = ({ hobbies = [] }) => {
     <Card
       title='个人爱好'
       style={{
-        maxWidth: 400,
         width: '100%',
         textAlign: 'center',
         borderRadius: 8,

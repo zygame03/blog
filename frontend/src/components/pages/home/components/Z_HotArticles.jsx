@@ -27,6 +27,9 @@ const Z_HotArticles = () => {
   return (
     <Card 
       title="热门文章" 
+      style={{
+          boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+      }}
     >
       <Row gutter={[16, 16]}>
         {hotArticles.map((item) => (

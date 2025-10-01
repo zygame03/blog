@@ -59,7 +59,7 @@ const Z_ArticleInfoCard = ({ item }) => {
               <Text type="secondary">暂无标签</Text>
             )}
           </div>
-          <Text type="secondary">{`${item.authorName} | ${new Date(item.createdAt).toLocaleDateString()}`}</Text>
+          <Text type="secondary">{`${item.authorName} | ${new Date(item.createdAt).toLocaleDateString()}`} | {`${item.views}`}</Text>
         </div>
       </Card>
     </Col>

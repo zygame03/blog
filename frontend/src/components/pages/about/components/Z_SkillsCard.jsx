@@ -11,7 +11,6 @@ const Z_SkillsCard = ({ skills = [] }) => {
     <Card
       title='个人技能'
       style={{
-        maxWidth: 400,
         width: '100%',
         textAlign: 'center',
         borderRadius: 8,

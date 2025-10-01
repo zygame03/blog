@@ -61,26 +61,38 @@ func GetArticlesByPage(db *gorm.DB, page, pageSize int) ([]Article, int64, error
 // 获取热门文章，目前只基于view数，后续增加其他项综合判断
 func GetArticlesByPopular(db *gorm.DB, limit int) ([]Article, error) {
 	var articles []Article
-	var result *gorm.DB
+	var err error
 
 	if limit == 0 {
-		result = db.Order("views").Find(&articles)
+		err = db.Order("views DESC").Find(&articles).Error
 	} else {
-		result = db.Order("views").Limit(limit).Find(&articles)
+		err = db.Order("views DESC").Limit(limit).Find(&articles).Error
 	}
 
-	if result.Error != nil {
-		return nil, result.Error
+	if err != nil {
+		return nil, err
 	}
 
 	return articles, nil
 }
 
-// 通过ID获取文章
+// 通过ID获取文章，获取后增加views
 func GetArticleByID(db *gorm.DB, ID int) (Article, error) {
 	var article Article
 
-	db.Where("id = ?", ID).First(&article)
+	err := db.Where("id = ?", ID).First(&article).Error
+	if err != nil {
+		return article, err
+	}
+
+	// 访问文章时增加浏览数
+	err = db.Model(&article).
+		Where("id = ?", ID).
+		UpdateColumn("views", gorm.Expr("views + ?", 1)).
+		Error
+	if err != nil {
+		return article, err
+	}
 
 	return article, nil
 }

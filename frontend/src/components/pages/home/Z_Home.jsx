@@ -7,8 +7,6 @@ import { Layout, Row, Col } from 'antd';
 
 const { Header, Content, Footer } = Layout;
 
-const fadeInTime = 'fadeIn 1s ease-out forwards'
-
 const Z_Home = () => {
   return (
     <div
@@ -22,30 +20,27 @@ const Z_Home = () => {
         <Content
           style={{
             padding: '0 10%',
-            marginTop: 64,
+            marginTop: 88,
           }}
         >
-          <Row gutter={16} style={{ marginTop: '12px' }}>
-            <Col
-              span={6}
-              style={{
-                animation: fadeInTime,
-              }}
-            >
-              <Z_ProfileCard />
-            </Col>
+            <Row gutter={[24, 24]} align="top">
+              {/* <Col xs={24}>
+                <Z_Background />
+              </Col> */}
+              <Col
+                md={6}
+              >
+                <Z_ProfileCard />
+              </Col>
 
-            <Col
-              span={18}
-              style={{
-                animation: fadeInTime,
-              }}
-            >
-              <Z_HotArticles />
-            </Col>
-          </Row>
+              <Col
+                md={18}
+              >
+                <Z_HotArticles />
+              </Col>
+            </Row>
         </Content>
-        
+      
         <Footer
           style={{
             textAlign: 'center',

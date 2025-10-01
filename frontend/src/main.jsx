@@ -11,6 +11,7 @@ import Z_ArticleDetail from "./components/pages/article/Z_ArticleDetail";
 import Z_AboutMe from "./components/pages/about/Z_About";
 import Z_Classic from "./components/pages/classic/Z_Classic";
 import Z_Links from "./components/pages/links/Z_Links";
+import Z_ScrollToTop from "./components/common/Z_ScrollTop";
 
 const variants = {
   initial: { opacity: 0, x: 50 },
@@ -51,11 +52,12 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     theme={{
         token: {
           colorPrimary: '#a51d1dff',
-          fontSize: 18,
+          fontSize: 20,
         },
     }}
   >
     <BrowserRouter>
+      <Z_ScrollToTop />
       <AnimatedRoutes />
     </BrowserRouter>
   </ConfigProvider>

@@ -31,6 +31,7 @@ const Z_ArticleDetail = () => {
         console.error("获取 Article 失败", err);
         setLoading(false);
       });
+  
   }, [id]);
 
   if (loading) return <Spin style={{ margin: '100px auto', display: 'block' }} />;

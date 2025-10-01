@@ -37,21 +37,6 @@ const fallbackProfile = {
 };
 
 const Z_AboutMe = () => {
-  const [profile, setProfile] = useState(fallbackProfile);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    axios
-      .get(`${API_BASE}/api/profile`)
-      .then((res) => {
-        setProfile(res.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error('获取 profile 失败，使用保底数据:', err);
-        setLoading(false);
-      });
-  }, []);
 
   return (
     <div style={{ minWidth: '800px' }}>
@@ -61,31 +46,31 @@ const Z_AboutMe = () => {
         <Content style={{ padding: '20px 10%', marginTop: 64 }}>
 
           <Row gutter={[24, 24]} align="top">
-            <Col xs={24} md={12} lg={8}>
-              <Z_ProfileCard profile={profile} loading={loading} style={{ width: '100%' }} />
+            <Col xs={24}>
+              <Z_ProfileCard style={{ width: '100%' }} />
             </Col>
 
-            <Col xs={24} md={12} lg={8}>
+            <Col md={12}>
               <Z_SkillsCard skills={skills} style={{ width: '100%' }}/>
             </Col>
 
-            <Col xs={24} md={12} lg={8}>
+            <Col md={12}>
               <Z_HobbiesCard hobbies={hobbies} style={{ width: '100%' }}/>
-            </Col>
-
-            <Col xs={24}>
-              <Z_CareerTimeline careerList={careerList} layout="horizontal" style={{ width: '100%' }}/>
             </Col>
 
             <Col xs={24}>
               <Z_AboutSite
                 siteInfo={{
-                  text: '记录学习笔记与个人项目展示的博客网站。',
+                  text: '记录学习与个人项目展示的博客网站。',
                   author: 'zygame',
                   year: 2025,
                 }}
                 style={{ width: '100%' }}
               />
+            </Col>
+            
+            <Col xs={24}>
+              <Z_CareerTimeline careerList={careerList} layout="horizontal" style={{ width: '100%' }}/>
             </Col>
           </Row>
         </Content>
