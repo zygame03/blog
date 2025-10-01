@@ -4,6 +4,7 @@ import { ConfigProvider } from "antd";
 import { AnimatePresence, motion } from "framer-motion";
 
 import "./style/index.css";
+import "devicon/devicon.min.css";
 
 import Z_Home from "./components/pages/home/Z_Home";
 import Z_Article from "./components/pages/article/Z_Article";
@@ -53,6 +54,12 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         token: {
           colorPrimary: '#a51d1dff',
           fontSize: 20,
+        },
+        components: {
+          Card: {
+            width: '100%',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          },
         },
     }}
   >

@@ -3,17 +3,12 @@ import { Card, Typography, Tag } from 'antd';
 
 const { Title } = Typography;
 
-/**
- * hobbies: Array<string>
- */
 const Z_HobbiesCard = ({ hobbies = [] }) => {
   return (
     <Card
       title='个人爱好'
       style={{
         width: '100%',
-        textAlign: 'center',
-        borderRadius: 8,
         boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
       }}
     >

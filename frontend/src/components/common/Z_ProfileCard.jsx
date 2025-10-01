@@ -44,6 +44,7 @@ const Z_ProfileCard = () => {
           textAlign: "center",
           marginBottom: 0, 
           padding: 10, 
+          width: '100%',
           boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
         }}
       >
