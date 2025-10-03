@@ -1,6 +1,7 @@
 import React from 'react';
 import Z_Header from '../../layout/Z_Header';
 import Z_ArticleTimeline from './components/Z_ArticleTimeline';
+import Z_ArticlePagination from './components/Z_ArticlePagination';
 
 import { Layout, Row, Col } from 'antd';
 
@@ -10,36 +11,24 @@ const fadeInTime = 'fadeIn 1s ease-out forwards'
 
 const Z_Article = () => {
   return (
-    <div
-      style={{
-        minWidth: '800px', 
-      }}
-    >
+    <div>
       <Layout>
         <Z_Header />
 
         <Content
           style={{
-            padding: '0 10%',
-            marginTop: 64,
+            padding: '0 5%',
+            marginTop: 88,
           }}
         >
-          <Row gutter={16}>
+          <Row gutter={24}>
             <Col
-              span={6}
+              
               style={{
                 animation: fadeInTime,
               }}
             >
-            </Col>
-
-            <Col
-              span={18}
-              style={{
-                animation: fadeInTime,
-              }}
-            >
-              <Z_ArticleTimeline />
+              <Z_ArticlePagination />
             </Col>
           </Row>
 

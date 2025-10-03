@@ -8,11 +8,7 @@ const { Header, Content, Footer } = Layout;
 
 const Z_Links = () => {
   return (
-    <div
-      style={{
-        minWidth: '800px', 
-      }}
-    >
+    <div>
       <Layout>
         <Z_Header />
 

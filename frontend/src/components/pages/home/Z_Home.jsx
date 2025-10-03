@@ -9,17 +9,13 @@ const { Header, Content, Footer } = Layout;
 
 const Z_Home = () => {
   return (
-    <div
-      style={{
-        minWidth: '800px', 
-      }}
-    >
+    <div>
       <Layout>
         <Z_Header />
 
         <Content
           style={{
-            padding: '0 10%',
+            padding: '0 5%',
             marginTop: 88,
           }}
         >
@@ -27,14 +23,15 @@ const Z_Home = () => {
               {/* <Col xs={24}>
                 <Z_Background />
               </Col> */}
+
               <Col
-                md={6}
+                xl={6} lg={8} md={24} xs={24}
               >
                 <Z_ProfileCard />
               </Col>
 
               <Col
-                md={18}
+                xl={18} lg={16} md={24}
               >
                 <Z_HotArticles />
               </Col>

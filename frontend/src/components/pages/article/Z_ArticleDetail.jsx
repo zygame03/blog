@@ -41,28 +41,30 @@ const Z_ArticleDetail = () => {
       <Z_Header />
 
       <Content style={{ 
-        marginTop: 80,
-        padding: '0 10%', 
-        minHeight: 'calc(100vh - 128px)', 
-        position: 'relative' 
+        marginTop: 88,
+        padding: '0 5%', 
       }}>
         <motion.div
           initial={{ opacity: 0, y: 50 }} // 初始状态：下方 & 透明
           animate={{ opacity: 1, y: 0 }}  // 动画结束：正常位置 & 不透明
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <Row gutter={16}>
-            <Col span={6}>
+          <Row gutter={[24, 24]}>
+            <Col lg={6} md={0} xs={0}>
               <Z_ArticleIndex content={article.content} />
             </Col>
-            <Col span={18}>
+            <Col lg={18} md={24} xs={24}>
               <Z_ArticleContent article={article} />
             </Col>
           </Row>
         </motion.div>
       </Content>
 
-      <Footer style={{ textAlign: 'center', backgroundColor: '#f0f2f5', padding: '10px 50px' }}>
+      <Footer 
+        style={{ 
+          textAlign: 'center', 
+          }}
+        >
         Ant Design ©{new Date().getFullYear()} Created by Ant UED
       </Footer>
     </Layout>

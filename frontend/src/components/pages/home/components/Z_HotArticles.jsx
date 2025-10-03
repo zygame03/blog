@@ -3,7 +3,7 @@ import { Card, Row, Col, Tag, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import Z_ArticleInfoCard from "./Z_ArticleInfoCard";
+import Z_ArticleInfoCard from "../../../common/Z_ArticleInfoCard";
 
 import { API_BASE } from "../../../../api";
 
@@ -31,10 +31,13 @@ const Z_HotArticles = () => {
           boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
       }}
     >
-      <Row gutter={[16, 16]}>
-        {hotArticles.map((item) => (
-          <Z_ArticleInfoCard key={item.id} item={item} /> // 渲染每个卡片
-        ))}
+      <Row gutter={[24, 24]}>
+          {hotArticles.map((item) => (
+            <Col xl={12} md={24} xs={24} key={item.id}>
+              <Z_ArticleInfoCard key={item.id} item={item} />
+            </Col>
+          ))}
+          
       </Row>
     </Card>
   );

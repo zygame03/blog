@@ -21,24 +21,29 @@ const careerList = [
 
 const Z_AboutMe = () => {
   return (
-    <div style={{ minWidth: '800px' }}>
+    <div>
       <Layout>
         <Z_Header />
 
-        <Content style={{ padding: '20px 10%', marginTop: 64 }}>
-          <Row gutter={[24, 24]} align="stretch">
-            <Col xs={24} md={8} style={{ display: 'flex' }}>
+        <Content 
+          style={{ 
+            padding: '20px 5%', 
+            marginTop: 64 
+          }}
+        >
+          <Row gutter={[24, 24]}>
+            <Col md={12} xs={24} style={{ display: 'flex' }}>
               <Z_ProfileCard style={{ flex: 1 }} />
             </Col>
 
-            <Col xs={24} md={8} style={{ display: 'flex' }}>
+            <Col md={12} xs={24} style={{ display: 'flex' }}>
               <Z_SkillsCard
                 skills={skills}
                 style={{ flex: 1 }}
               />
             </Col>
             
-            <Col xs={24} md={8} style={{ display: 'flex' }}>
+            <Col md={12} xs={24} style={{ display: 'flex' }}>
               <Z_HobbiesCard
                 hobbies={hobbies}
                 style={{ flex: 1 }}
@@ -52,13 +57,6 @@ const Z_AboutMe = () => {
                   author: 'zygame',
                   year: 2025,
                 }}
-              />
-            </Col>
-
-            <Col xs={24}>
-              <Z_CareerTimeline
-                careerList={careerList}
-                layout="horizontal"
               />
             </Col>
           </Row>

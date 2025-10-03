@@ -53,13 +53,22 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     theme={{
         token: {
           colorPrimary: '#a51d1dff',
-          fontSize: 20,
+          fontSize: 18,
         },
         components: {
-          Card: {
-            width: '100%',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          card: {
+            styles: {
+              width: '100%',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+            } 
           },
+          Row: {
+            gutter: [24, 24],
+            align: 'stretch'
+          },
+          Col: {
+            display: 'flex'
+          }
         },
     }}
   >

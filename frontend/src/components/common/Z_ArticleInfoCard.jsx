@@ -9,13 +9,11 @@ const Z_ArticleInfoCard = ({ item }) => {
   const [hovered, setHovered] = useState(false);  // 用来控制是否悬停
 
   return (
-    <Col span={12} key={item.id}>
+    // <Col xl={12} md={24} xs={24} key={item.id}>
       <Card
         hoverable
         onClick={() => navigate(`/article/${item.id}`)}
         style={{
-          marginBottom: 0,
-          padding: 0,
           boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
           transition: 'transform 0.5s ease, box-shadow 0.5s ease',
           transform: hovered ? 'scale(1.02)' : 'scale(1)', 
@@ -62,7 +60,7 @@ const Z_ArticleInfoCard = ({ item }) => {
           <Text type="secondary">{`${item.authorName} | ${new Date(item.createdAt).toLocaleDateString()}`} | {`${item.views}`}</Text>
         </div>
       </Card>
-    </Col>
+    // </Col>
   );
 };
 
