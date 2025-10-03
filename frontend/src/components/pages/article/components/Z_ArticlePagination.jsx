@@ -71,28 +71,29 @@ const Z_ArticlePagination = () => {
   };
 
   return (
-    <Card
-      title="文章归档"
-      style={{
-        width: "100%",
-        boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-      }}
-    >
+    <>
       {loading ? (
-        <div style={{ textAlign: "center", padding: "50px 0" }}>
+        <div style={{ textAlign: "center"}}>
           <Spin size="large" />
         </div>
       ) : years.length === 0 ? (
         <Empty description="暂无文章" />
       ) : (
         years.map((year) => (
-          <div key={year} style={{ marginBottom: 32 }}>
+          <div 
+            key={year} 
+            style={{ 
+              marginBottom: 32 
+            }}
+          >
             <Divider orientation="left">
               <Title level={3} style={{ margin: 0 }}>
                 {year}
               </Title>
             </Divider>
-            <Row gutter={[24, 24]}>
+            <Row 
+              gutter={[24, 24]}
+            >
               {grouped[year].map((item) => (
                 <Col xl={24} md={24} xs={24} key={item.id}>
                   <Z_ArticleInfoCard key={item.id} item={item} />
@@ -111,7 +112,7 @@ const Z_ArticlePagination = () => {
           onChange={handlePageChange}
         />
       </div>
-    </Card>
+    </>
   );
 };
 

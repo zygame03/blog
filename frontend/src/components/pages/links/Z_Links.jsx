@@ -1,4 +1,5 @@
 import Z_Header from '../../layout/Z_Header';
+import Z_Content from '../../layout/Z_Content';
 
 import { Typography, Layout, Row, Col } from 'antd';
 
@@ -12,15 +13,9 @@ const Z_Links = () => {
       <Layout>
         <Z_Header />
 
-        <Content
-          style={{
-            padding: '0 10%',
-            marginTop: 64,
-            textAlign: 'center',
-          }}
-        >
+        <Z_Content>
           <Title level={4}>施工中...</Title>
-        </Content>
+        </Z_Content>
         
         <Footer
           style={{

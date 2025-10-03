@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, Avatar, Typography, Divider, Spin } from "antd";
 import { GithubOutlined, BilibiliOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { API_BASE } from "../../api";
 
 const { Title, Text } = Typography;
-
-
 
 // 保底数据（默认展示）
 const fallbackProfile = {

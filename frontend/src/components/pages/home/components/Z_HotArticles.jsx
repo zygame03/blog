@@ -25,21 +25,14 @@ const Z_HotArticles = () => {
   const navigate = useNavigate();
 
   return (
-    <Card 
-      title="热门文章" 
-      style={{
-          boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-      }}
-    >
-      <Row gutter={[24, 24]}>
-          {hotArticles.map((item) => (
-            <Col xl={12} md={24} xs={24} key={item.id}>
-              <Z_ArticleInfoCard key={item.id} item={item} />
-            </Col>
-          ))}
-          
-      </Row>
-    </Card>
+    <Row gutter={[16, 16]}>
+        {hotArticles.map((item) => (
+          <Col xxl={12} xl={24} md={24} xs={24} key={item.id}>
+            <Z_ArticleInfoCard key={item.id} item={item} />
+          </Col>
+        ))}
+        
+    </Row>
   );
 };
 

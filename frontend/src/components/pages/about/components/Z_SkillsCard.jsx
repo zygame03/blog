@@ -7,7 +7,7 @@ const { Title } = Typography;
 const Z_SkillsCard = ({ skills = [] }) => {
   return (
     <Card
-      title="个人技能"
+      title="技能"
       style={{
         width: '100%',
         boxShadow: '0 2px 8px rgba(0,0,0,0.15)',

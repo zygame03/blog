@@ -6,7 +6,7 @@ const { Title } = Typography;
 const Z_HobbiesCard = ({ hobbies = [] }) => {
   return (
     <Card
-      title='个人爱好'
+      title='爱好'
       style={{
         width: '100%',
         boxShadow: '0 2px 8px rgba(0,0,0,0.15)',

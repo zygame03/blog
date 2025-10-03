@@ -53,7 +53,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     theme={{
         token: {
           colorPrimary: '#a51d1dff',
-          fontSize: 18,
+          fontSize: 16,
         },
         components: {
           card: {

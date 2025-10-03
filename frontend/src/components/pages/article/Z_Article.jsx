@@ -1,7 +1,6 @@
-import React from 'react';
 import Z_Header from '../../layout/Z_Header';
-import Z_ArticleTimeline from './components/Z_ArticleTimeline';
 import Z_ArticlePagination from './components/Z_ArticlePagination';
+import Z_Content from '../../layout/Z_Content';
 
 import { Layout, Row, Col } from 'antd';
 
@@ -15,15 +14,9 @@ const Z_Article = () => {
       <Layout>
         <Z_Header />
 
-        <Content
-          style={{
-            padding: '0 5%',
-            marginTop: 88,
-          }}
-        >
+        <Z_Content>
           <Row gutter={24}>
             <Col
-              
               style={{
                 animation: fadeInTime,
               }}
@@ -32,7 +25,7 @@ const Z_Article = () => {
             </Col>
           </Row>
 
-        </Content>
+        </Z_Content>
         
         <Footer
           style={{

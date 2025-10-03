@@ -6,6 +6,7 @@ import Z_SkillsCard from './components/Z_SkillsCard';
 import Z_HobbiesCard from './components/Z_HobbiesCard';
 import Z_CareerTimeline from './components/Z_CareerTimeline';
 import Z_AboutSite from './components/Z_AboutSite';
+import Z_Content from '../../layout/Z_Content';
 
 const { Content, Footer } = Layout;
 const { Title } = Typography;
@@ -25,13 +26,8 @@ const Z_AboutMe = () => {
       <Layout>
         <Z_Header />
 
-        <Content 
-          style={{ 
-            padding: '20px 5%', 
-            marginTop: 64 
-          }}
-        >
-          <Row gutter={[24, 24]}>
+        <Z_Content>
+          <Row gutter={[16, 16]}>
             <Col md={12} xs={24} style={{ display: 'flex' }}>
               <Z_ProfileCard style={{ flex: 1 }} />
             </Col>
@@ -60,7 +56,7 @@ const Z_AboutMe = () => {
               />
             </Col>
           </Row>
-        </Content>
+        </Z_Content>
 
         <Footer style={{ textAlign: 'center' }}>
           Ant Design ©{new Date().getFullYear()} Created by Ant UED
