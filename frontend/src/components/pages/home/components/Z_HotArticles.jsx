@@ -27,7 +27,7 @@ const Z_HotArticles = () => {
   return (
     <Row gutter={[16, 16]}>
         {hotArticles.map((item) => (
-          <Col xxl={12} xl={24} md={24} xs={24} key={item.id}>
+          <Col xl={24} md={24} xs={24} key={item.id}>
             <Z_ArticleInfoCard key={item.id} item={item} />
           </Col>
         ))}

@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react';
-import { Card } from 'antd';
+import { useEffect, useState } from "react";
+import { Card, Anchor } from "antd";
+
+const { Link } = Anchor;
 
 const Z_ArticleIndex = ({ content }) => {
   const [toc, setToc] = useState([]);
@@ -8,34 +10,54 @@ const Z_ArticleIndex = ({ content }) => {
     // 正则匹配 Markdown 中的标题
     const headingRegex = /^(#{1,6})\s+(.+)$/gm;
     const matches = [];
-    
+
     let match;
     while ((match = headingRegex.exec(content)) !== null) {
-      const level = match[1].length;  // 标题的等级，如 # 为 1，## 为 2
-      const title = match[2];  // 标题内容
-      matches.push({ level, title });
+      const level = match[1].length; // 标题级别
+      const title = match[2].trim(); // 标题内容
+      const id = `heading-${matches.length}`; // 生成唯一 id
+
+      matches.push({ level, title, id });
     }
 
     setToc(matches);
+
+    // 给文章内容里的对应标题加 id（假设正文在 #article-content 里）
+    const container = document.querySelector("#article-content");
+    if (container) {
+      let i = 0;
+      container.querySelectorAll("h1,h2,h3,h4,h5,h6").forEach((el) => {
+        el.id = `heading-${i++}`;
+      });
+    }
   }, [content]);
 
+  // 递归渲染目录项（支持层级缩进）
+  const renderLinks = (items) =>
+    items.map((item) => (
+      <Link
+        key={item.id}
+        href={`#${item.id}`}
+        title={item.title}
+      />
+    ));
+
   return (
-    <Card 
+    <Card
+      title="目录"
       style={{
-          marginBottom: 0, // 减小卡片之间的间距
-          padding: 0, // 减小卡片的内边距
-          borderRadius: 8, // 边角圆滑
-          boxShadow: '0 2px 8px rgba(0,0,0,0.15)' // 添加适度阴影提升卡片视觉层次
-        }}
+        marginBottom: 0,
+        padding: 0,
+        borderRadius: 8,
+        boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+      }}
+    >
+      <Anchor
+        affix={false} // 不固定在顶部
+        offsetTop={80} // 页面滚动时的偏移量（避免被header挡住）
       >
-      <h2>目录</h2>
-      <ul>
-        {toc.map((item, index) => (
-          <li key={index} style={{ marginLeft: `${item.level * 10}px` }}>
-           {item.title}
-          </li>
-        ))}
-      </ul>
+        {renderLinks(toc)}
+      </Anchor>
     </Card>
   );
 };

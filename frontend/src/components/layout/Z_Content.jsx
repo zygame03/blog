@@ -18,7 +18,7 @@ const Z_Content = ({ children }) => {
       <div
         style={{
           width: "100%",
-          maxWidth: "1350px",
+          maxWidth: "1100px",
         }}
       >
         {children}

@@ -51,25 +51,25 @@ function AnimatedRoutes() {
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ConfigProvider 
     theme={{
-        token: {
-          colorPrimary: '#a51d1dff',
-          fontSize: 16,
+      token: {
+        colorPrimary: '#a51d1dff',
+        fontSize: 16,
+      },
+      components: {
+        card: {
+          styles: {
+            width: '100%',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          } 
         },
-        components: {
-          card: {
-            styles: {
-              width: '100%',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-            } 
-          },
-          Row: {
-            gutter: [24, 24],
-            align: 'stretch'
-          },
-          Col: {
-            display: 'flex'
-          }
+        Row: {
+          gutter: [24, 24],
+          align: 'stretch'
         },
+        Col: {
+          display: 'flex'
+        }
+      },
     }}
   >
     <BrowserRouter>

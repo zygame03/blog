@@ -1,6 +1,5 @@
 import Z_Header from '../../layout/Z_Header';
 
-
 import { Typography, Layout, Row, Col } from 'antd';
 
 const { Title } = Typography;

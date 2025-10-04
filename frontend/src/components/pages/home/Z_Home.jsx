@@ -16,11 +16,11 @@ const Z_Home = () => {
 
         <Z_Content>
             <Row gutter={[16, 16]} align="top">
-              <Col xxl={6} xl={6} lg={8} md={24} xs={24}>
+              <Col lg={7} md={24} xs={24}>
                 <Z_ProfileCard />
               </Col>
 
-              <Col xxl={18} xl={18} lg={16} md={24} xs={24}>
+              <Col lg={17} md={24} xs={24}>
                 <Z_HotArticles />
               </Col>
             </Row>

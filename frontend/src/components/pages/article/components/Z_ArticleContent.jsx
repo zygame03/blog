@@ -1,34 +1,43 @@
-import { Card } from 'antd';
-import { Markdown } from '@ant-design/pro-editor';
-import { Typography, Tag } from 'antd';
+import { useEffect } from "react";
+import { Card, Typography, Tag } from "antd";
+import { Markdown } from "@ant-design/pro-editor";
 
 const { Title, Text } = Typography;
 
 const Z_ArticleContent = ({ article }) => {
-  const { title, authorName, createdAt, cover, content, tags, desc } = article;
+  const { title, authorName, createdAt, content, tags, desc } = article;
+
+  useEffect(() => {
+    // 扫描 Markdown 渲染结果中的 h1-h6
+    const container = document.querySelector("#article-content");
+    if (container) {
+      let i = 0;
+      container.querySelectorAll("h1,h2,h3,h4,h5,h6").forEach((el) => {
+        el.id = `heading-${i++}`; // 和 Z_ArticleIndex 保持一致
+      });
+    }
+  }, [content]);
 
   return (
-    <Card 
+    <Card
       style={{
-          marginBottom: 0, // 减小卡片之间的间距
-          padding: 0, // 减小卡片的内边距
-          borderRadius: 8, // 边角圆滑
-          boxShadow: '0 2px 8px rgba(0,0,0,0.15)' // 添加适度阴影提升卡片视觉层次
-        }}
-      >
+        boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+      }}
+    >
       <Title level={3} style={{ margin: 0 }}>
         {title}
       </Title>
       <Text type="secondary">
         {`${authorName} | ${new Date(createdAt).toLocaleDateString()}`}
       </Text>
+
       <div>
         {tags && tags.trim() !== "" ? (
           tags
-            .replace(/^\[|\]$/g, '')
-            .split(",")                   // 按逗号切分
-            .map(tag => tag.trim())       // 去掉前后空格
-            .filter(tag => tag.length > 0) // 过滤掉空字符串
+            .replace(/^\[|\]$/g, "")
+            .split(",")
+            .map((tag) => tag.trim())
+            .filter((tag) => tag.length > 0)
             .map((tag, idx) => (
               <Tag key={idx} color="blue">
                 {tag}
@@ -38,17 +47,16 @@ const Z_ArticleContent = ({ article }) => {
           <Text type="secondary">暂无标签</Text>
         )}
       </div>
-      {/* <div style={{ marginTop: 8 }}>
-        {tags?.map((tag, idx) => (
-          <Tag key={idx} color="geekblue">{tag}</Tag>
-        ))}
-      </div> */}
+
       {desc && (
         <div style={{ marginTop: 8, fontSize: 20 }}>
           <Text>{desc}</Text>
         </div>
       )}
-      <Markdown>{content}</Markdown>
+
+      <div id="article-content">
+        <Markdown>{content}</Markdown>
+      </div>
     </Card>
   );
 };

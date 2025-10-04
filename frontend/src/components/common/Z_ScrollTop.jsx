@@ -6,7 +6,7 @@ const Z_ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);  // 切换路由时自动回到顶部
+    window.scrollTo(0, 0);  
   }, [pathname]);
 
   return null;

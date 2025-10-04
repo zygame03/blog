@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Layout, Row, Col, Spin } from 'antd';
+import { Layout, Row, Col, Spin, Affix } from 'antd';
 import axios from 'axios';
-import { motion } from 'framer-motion'; // 新增
+import { motion } from 'framer-motion';
 
 import Z_Header from '../../layout/Z_Header';
 import Z_ArticleContent from './components/Z_ArticleContent';
@@ -25,7 +25,6 @@ const Z_ArticleDetail = () => {
       .catch((err) => {
         console.error("获取 Article 失败", err);
       });
-  
   }, [id]);
 
   return (
@@ -34,14 +33,19 @@ const Z_ArticleDetail = () => {
 
       <Z_Content>
         <motion.div
-          initial={{ opacity: 0, y: 50 }} // 初始状态：下方 & 透明
-          animate={{ opacity: 1, y: 0 }}  // 动画结束：正常位置 & 不透明
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <Row gutter={[24, 24]}>
+          <Row gutter={[16, 16]}>
+            {/* 左侧目录：用 Affix 固定 */}
             <Col lg={6} md={0} xs={0}>
-              <Z_ArticleIndex content={article.content} />
+              <Affix offsetTop={80}>
+                <Z_ArticleIndex content={article.content} />
+              </Affix>
             </Col>
+
+            {/* 右侧正文 */}
             <Col lg={18} md={24} xs={24}>
               <Z_ArticleContent article={article} />
             </Col>
@@ -49,11 +53,7 @@ const Z_ArticleDetail = () => {
         </motion.div>
       </Z_Content>
 
-      <Footer 
-        style={{ 
-          textAlign: 'center', 
-          }}
-        >
+      <Footer style={{ textAlign: 'center' }}>
         Ant Design ©{new Date().getFullYear()} Created by Ant UED
       </Footer>
     </Layout>
