@@ -1,0 +1,29 @@
+.z-background {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(-45deg, #e3ffe7, #d9e7ff, #fce2ff, #f6f1d3);
+  background-size: 400% 400%;
+  animation: gradientFlow 15s ease infinite;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.z-background-overlay {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 1;
+}
+
+.z-background-content {
+  position: relative;
+  z-index: 2;
+  /* padding: 60px 20px; */
+}

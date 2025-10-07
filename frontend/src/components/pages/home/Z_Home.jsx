@@ -1,8 +1,8 @@
 import Z_Header from '../../layout/Z_Header';
-import Z_Background from './components/Z_Background';
 import Z_ProfileCard from '../../common/Z_ProfileCard';
 import Z_HotArticles from './components/Z_HotArticles';
 import Z_Content from '../../layout/Z_Content';
+import Z_Background from '../../common/Z_Background';
 
 import { Layout, Row, Col } from 'antd';
 
@@ -10,7 +10,7 @@ const { Header, Content, Footer } = Layout;
 
 const Z_Home = () => {
   return (
-    <div>
+    <Z_Background>
       <Layout>
         <Z_Header />
 
@@ -48,7 +48,7 @@ const Z_Home = () => {
           }
         `}
       </style>
-    </div>
+    </Z_Background>
   );
 };
 

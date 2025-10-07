@@ -30,7 +30,7 @@ const Z_HoverLineBox = ({
       {/* 子元素区域 */}
       <div
         style={{
-          background: "#fff",
+          background: "#ffffff",
           borderRadius,
           overflow: "hidden",
           position: "relative",

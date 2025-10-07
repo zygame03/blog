@@ -49,26 +49,26 @@ function AnimatedRoutes() {
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <ConfigProvider 
+  <ConfigProvider
     theme={{
       token: {
-        colorPrimary: '#a51d1dff',
+        colorPrimary: "#ff4d4f",
         fontSize: 16,
+        colorText: "#222",
       },
       components: {
-        card: {
-          styles: {
-            width: '100%',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-          } 
+        Layout: {
+          headerBg: "transparent",
+          bodyBg: "transparent",
+          footerBg: "transparent",
+          siderBg: "transparent",
         },
-        Row: {
-          gutter: [24, 24],
-          align: 'stretch'
+        Card: {
+          colorBgContainer: "rgba(255, 255, 255, 0.25)",
+          colorBorderSecondary: "rgba(255, 255, 255, 0.3)",
+          // borderRadiusLG: 16,
+          boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
         },
-        Col: {
-          display: 'flex'
-        }
       },
     }}
   >
