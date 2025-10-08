@@ -64,10 +64,12 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           siderBg: "transparent",
         },
         Card: {
+          boxShadow: '0 4px 12px rgba(255, 165, 130, 0.25)',  
           colorBgContainer: "rgba(255, 255, 255, 0.25)",
           colorBorderSecondary: "rgba(255, 255, 255, 0.3)",
-          // borderRadiusLG: 16,
-          boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+          borderRadiusLG: 16,
+          width: '100%',
+          // borderRadius: 16,
         },
       },
     }}

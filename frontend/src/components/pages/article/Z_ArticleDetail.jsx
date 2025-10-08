@@ -10,6 +10,7 @@ import Z_ArticleIndex from './components/Z_ArticleIndex';
 import Z_Content from '../../layout/Z_Content';
 
 import { API_BASE } from '../../../api';
+import Z_Background from '../../common/Z_Background';
 
 const { Header, Content, Footer } = Layout;
 
@@ -28,35 +29,37 @@ const Z_ArticleDetail = () => {
   }, [id]);
 
   return (
-    <Layout>
-      <Z_Header />
+    <Z_Background>
+      <Layout>
+        <Z_Header />
 
-      <Z_Content>
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
-          <Row gutter={[16, 16]}>
-            {/* 左侧目录：用 Affix 固定 */}
-            <Col lg={6} md={0} xs={0}>
-              <Affix offsetTop={80}>
-                <Z_ArticleIndex content={article.content} />
-              </Affix>
-            </Col>
+        <Z_Content>
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <Row gutter={[16, 16]}>
+              {/* 左侧目录：用 Affix 固定 */}
+              <Col lg={6} md={0} xs={0}>
+                <Affix offsetTop={80}>
+                  <Z_ArticleIndex content={article.content} />
+                </Affix>
+              </Col>
 
-            {/* 右侧正文 */}
-            <Col lg={18} md={24} xs={24}>
-              <Z_ArticleContent article={article} />
-            </Col>
-          </Row>
-        </motion.div>
-      </Z_Content>
+              {/* 右侧正文 */}
+              <Col lg={18} md={24} xs={24}>
+                <Z_ArticleContent article={article} />
+              </Col>
+            </Row>
+          </motion.div>
+        </Z_Content>
 
-      <Footer style={{ textAlign: 'center' }}>
-        Ant Design ©{new Date().getFullYear()} Created by Ant UED
-      </Footer>
-    </Layout>
+        <Footer style={{ textAlign: 'center' }}>
+          Ant Design ©{new Date().getFullYear()} Created by Ant UED
+        </Footer>
+      </Layout>
+    </Z_Background>
   );
 };
 

@@ -23,15 +23,13 @@ const Z_HoverLineBox = ({
         transform: hovered ? `scale(${hoverScale})` : "scale(1)",
         boxShadow: hovered
           ? "0 6px 20px rgba(0,0,0,0.15)"
-          : "0 2px 8px rgba(0,0,0,0.08)",
+          : "0 2px 8px rgba(0,0,0,0.1)",
         ...style,
       }}
     >
       {/* 子元素区域 */}
       <div
         style={{
-          background: "#ffffff",
-          borderRadius,
           overflow: "hidden",
           position: "relative",
           zIndex: 1,

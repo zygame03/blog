@@ -39,13 +39,10 @@ const Z_ProfileCard = () => {
   return (
     <Card 
       style={{
-          textAlign: "center",
-          marginBottom: 0, 
-          padding: 10, 
-          width: '100%',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-        }}
-      >
+        textAlign: "center",
+        boxShadow: '0 4px 12px rgba(255, 165, 130, 0.25)',
+      }}
+    >
       {loading ? (
         <Spin tip="加载中..." />
       ) : (

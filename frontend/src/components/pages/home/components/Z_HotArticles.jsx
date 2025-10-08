@@ -31,7 +31,6 @@ const Z_HotArticles = () => {
             <Z_ArticleInfoCard key={item.id} item={item} />
           </Col>
         ))}
-        
     </Row>
   );
 };
