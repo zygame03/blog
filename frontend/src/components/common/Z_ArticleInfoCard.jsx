@@ -19,15 +19,11 @@ const Z_ArticleInfoCard = ({ item }) => {
   const createdTime = item.createdAt ?? item.created_at;
 
   return (
-    // <Z_FancyHoverBox>
+    <Z_FancyHoverBox>
       <Card
-        hoverable
         onClick={() => navigate(`/article/${item.id}`)}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        style={{
-          boxShadow: '0 4px 12px rgba(255, 165, 130, 0.25)',
-        }}
       >
         {/* 封面 */}
         {item.cover ? (
@@ -38,7 +34,7 @@ const Z_ArticleInfoCard = ({ item }) => {
               width: "100%",
               height: 180,
               objectFit: "cover",
-              borderRadius: 6,
+              borderRadius: 16,
               marginBottom: 12,
             }}
           />
@@ -50,7 +46,6 @@ const Z_ArticleInfoCard = ({ item }) => {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              // background: "#f0f0f0",
               borderRadius: 6,
               marginBottom: 12,
             }}
@@ -107,8 +102,7 @@ const Z_ArticleInfoCard = ({ item }) => {
           </Text>
         </Space>
       </Card>
-    // </Z_FancyHoverBox>
-    
+    </Z_FancyHoverBox>
   );
 };
 

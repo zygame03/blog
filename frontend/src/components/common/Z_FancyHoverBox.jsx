@@ -1,11 +1,13 @@
 // src/components/common/Z_HoverLineBox.jsx
 import React, { useState } from "react";
 
+import { Card } from "antd";
+
 const Z_HoverLineBox = ({
   children,
   lineColor = "#ff4d4f", // 默认红色线条
-  lineHeight = 2, // 线条高度
-  borderRadius = 10,
+  lineHeight = 4, // 线条高度
+  borderRadius = 16,
   hoverScale = 1.01,
   duration = 300,
   style = {},
@@ -22,8 +24,8 @@ const Z_HoverLineBox = ({
         transition: `all ${duration}ms ease`,
         transform: hovered ? `scale(${hoverScale})` : "scale(1)",
         boxShadow: hovered
-          ? "0 6px 20px rgba(0,0,0,0.15)"
-          : "0 2px 8px rgba(0,0,0,0.1)",
+          ? '0 6px 20px rgba(255, 165, 130, 0.35)'
+          : '0 4px 12px rgba(255, 165, 130, 0.25)',
         ...style,
       }}
     >

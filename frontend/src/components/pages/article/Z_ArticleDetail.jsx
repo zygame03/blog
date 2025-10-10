@@ -10,7 +10,6 @@ import Z_ArticleIndex from './components/Z_ArticleIndex';
 import Z_Content from '../../layout/Z_Content';
 
 import { API_BASE } from '../../../api';
-import Z_Background from '../../common/Z_Background';
 
 const { Header, Content, Footer } = Layout;
 
@@ -29,7 +28,7 @@ const Z_ArticleDetail = () => {
   }, [id]);
 
   return (
-    <Z_Background>
+    <>
       <Layout>
         <Z_Header />
 
@@ -59,7 +58,7 @@ const Z_ArticleDetail = () => {
           Ant Design ©{new Date().getFullYear()} Created by Ant UED
         </Footer>
       </Layout>
-    </Z_Background>
+    </>
   );
 };
 

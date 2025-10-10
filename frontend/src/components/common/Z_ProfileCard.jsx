@@ -40,7 +40,6 @@ const Z_ProfileCard = () => {
     <Card 
       style={{
         textAlign: "center",
-        boxShadow: '0 4px 12px rgba(255, 165, 130, 0.25)',
       }}
     >
       {loading ? (

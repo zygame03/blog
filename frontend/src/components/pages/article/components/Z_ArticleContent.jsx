@@ -21,7 +21,7 @@ const Z_ArticleContent = ({ article }) => {
   return (
     <Card
       style={{
-        boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+        boxShadow: '0 4px 12px rgba(255, 165, 130, 0.25)',
       }}
     >
       <Title level={3} style={{ margin: 0 }}>

@@ -45,12 +45,6 @@ const Z_ArticleIndex = ({ content }) => {
   return (
     <Card
       title="目录"
-      style={{
-        marginBottom: 0,
-        padding: 0,
-        borderRadius: 8,
-        boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-      }}
     >
       <Anchor
         affix={false} // 不固定在顶部

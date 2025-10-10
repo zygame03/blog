@@ -1,6 +1,5 @@
 import { Layout, Row, Col } from 'antd';
 import Z_Header from '../../layout/Z_Header';
-import Z_Background from '../../common/Z_Background';
 import Z_Content from '../../layout/Z_Content';
 
 import Z_IntroCard from './components/Z_IntroCard';
@@ -26,7 +25,7 @@ const timeline = [
 
 const Z_AboutMe = () => {
   return (
-    <Z_Background>
+    <>
       <Layout>
         <Z_Header />
 
@@ -66,7 +65,7 @@ const Z_AboutMe = () => {
             <Col xs={24}>
               <Z_AboutSite
                 siteInfo={{
-                  text: '这个博客旨在记录学习、研究和创作的过程。前端使用 React + Vite + Ant Design，后端采用 Go + PostgreSQL，自研主题与页面动画。',
+                  text: '这个博客旨在记录学习、生活和创作的过程。前端使用 React + Vite + Ant Design，后端采用 Go + PostgreSQL。',
                   author: 'zygame',
                   year: 2025,
                 }}
@@ -90,7 +89,7 @@ const Z_AboutMe = () => {
           ©{new Date().getFullYear()} zygame | Built with React + Go
         </Footer>
       </Layout>
-    </Z_Background>
+    </>
   );
 };
 

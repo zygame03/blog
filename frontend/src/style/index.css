@@ -25,26 +25,20 @@ html::-webkit-scrollbar-thumb {
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-/* =============================
-   💎 全局透明布局样式
-   适用于 antd Layout 系列
-   ============================= */
-.ant-layout,
-.ant-layout-header,
-.ant-layout-content,
-.ant-layout-footer,
-.ant-layout-sider {
-  background: transparent !important;
+.ant-menu {
+  background: #00000000;
 }
 
-/* Header 毛玻璃悬浮效果 */
+.ant-card {
+  box-shadow: 0 4px 12px rgba(255, 165, 130, 0.25);
+}
+
 .ant-layout-header {
-  position: sticky;
   top: 0;
   z-index: 100;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.15) !important;
+  background: rgba(255, 255, 255, 0) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   transition: background 0.3s ease;
 }

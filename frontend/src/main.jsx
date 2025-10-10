@@ -63,6 +63,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           footerBg: "transparent",
           siderBg: "transparent",
         },
+        Menu: {
+          
+        },
         Card: {
           boxShadow: '0 4px 12px rgba(255, 165, 130, 0.25)',  
           colorBgContainer: "rgba(255, 255, 255, 0.25)",

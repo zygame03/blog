@@ -3,7 +3,6 @@ import Z_ArticlePagination from './components/Z_ArticlePagination';
 import Z_Content from '../../layout/Z_Content';
 
 import { Layout, Row, Col } from 'antd';
-import Z_Background from '../../common/Z_Background';
 
 const { Header, Content, Footer } = Layout;
 
@@ -11,7 +10,7 @@ const fadeInTime = 'fadeIn 0.8s ease-out forwards'
 
 const Z_Article = () => {
   return (
-    <Z_Background>
+    <>
       <Layout>
         <Z_Header />
 
@@ -49,7 +48,7 @@ const Z_Article = () => {
           }
         `}
       </style>
-    </Z_Background>
+    </>
   );
 };
 
