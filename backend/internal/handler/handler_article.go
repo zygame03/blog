@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"my_web/backend/internal/global"
 	"my_web/backend/internal/models"
 	"strconv"
 
@@ -9,51 +10,57 @@ import (
 
 type Article struct{}
 
-type ArticleTitle struct {
-}
-
 func (*Article) GetAllArticles(c *gin.Context) {
-	page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
-	pageSize, _ := strconv.Atoi(c.DefaultQuery("pageSize", "10"))
-
 	db := GetDB(c)
-	articles, total, _ := models.GetArticlesList(db)
 
-	c.JSON(200, gin.H{
-		"data":     articles,
-		"total":    total,
-		"page":     page,
-		"pageSize": pageSize,
-	})
+	// page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
+	// pageSize, _ := strconv.Atoi(c.DefaultQuery("pageSize", "10"))
+
+	data, _, err := models.GetArticlesList(db)
+	if err != nil {
+		ReturnResponse(c, global.ErrDBOp, err)
+		return
+	}
+
+	ReturnSuccess(c, data)
 }
 
 func (*Article) GetHotArticles(c *gin.Context) {
 	db := GetDB(c)
 
-	articles, _ := models.GetArticlesByPopular(db, 10)
+	data, err := models.GetArticlesByPopular(db, 10)
+	if err != nil {
+		ReturnResponse(c, global.ErrDBOp, err)
+		return
+	}
 
-	c.JSON(200, articles)
+	ReturnSuccess(c, data)
 }
 
 // 获取文章时间线
 func (*Article) GetArticleTimeLine(c *gin.Context) {
 	db := GetDB(c)
 
-	articles, _, _ := models.GetArticlesByTime(db, 10)
+	data, _, _ := models.GetArticlesByTime(db, 10)
 
-	c.JSON(200, articles)
+	ReturnSuccess(c, data)
 }
 
 // 获取文章详情（带正文）
 func (*Article) GetArticleDetail(c *gin.Context) {
 	db := GetDB(c)
+
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
-		c.JSON(404, nil)
+		ReturnResponse(c, global.ErrDBOp, err)
 		return
 	}
 
-	article, _ := models.GetArticleByID(db, id)
+	data, err := models.GetArticleByID(db, id)
+	if err != nil {
+		ReturnResponse(c, global.ErrDBOp, err)
+		return
+	}
 
-	c.JSON(200, article)
+	ReturnSuccess(c, data)
 }

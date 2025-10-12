@@ -13,5 +13,5 @@ func (*User) GetProfile(c *gin.Context) {
 
 	Profile, _ := models.GetProfile(db)
 
-	c.JSON(200, Profile)
+	ReturnSuccess(c, Profile)
 }
