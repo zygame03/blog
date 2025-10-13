@@ -19,9 +19,8 @@ func RegisterHandlers(r *gin.Engine) {
 func registerArticleHandler(r *gin.Engine) {
 	article := r.Group("api/article")
 	{
-		article.GET("", articleAPI.GetAllArticles)
+		article.GET("", articleAPI.GetArticles)
 		article.GET("/hotArticles", articleAPI.GetHotArticles)
-		article.GET("/articlesTimeline", articleAPI.GetArticleTimeLine)
 		article.GET("/:id", articleAPI.GetArticleDetail)
 	}
 }
@@ -29,6 +28,9 @@ func registerArticleHandler(r *gin.Engine) {
 func registerUserHandler(r *gin.Engine) {
 	use := r.Group("api/user")
 	{
+		use.GET("/:id", userAPI.GetUser)
 		use.GET("/profile", userAPI.GetProfile)
+		use.GET("/hobbies", userAPI.GetHobbies)
+		use.GET("/skills", userAPI.GetSkills)
 	}
 }

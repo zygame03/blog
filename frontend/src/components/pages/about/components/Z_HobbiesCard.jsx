@@ -1,9 +1,28 @@
-import React from 'react';
+import { useState, useEffect} from 'react';
+import axios from 'axios';
 import { Card, Typography, Tag } from 'antd';
+
+import { API_BASE } from '../../../../api';
 
 const { Title } = Typography;
 
-const Z_HobbiesCard = ({ hobbies = [] }) => {
+const Z_HobbiesCard = () => {
+  const [hobbies, setHobbies] = useState({});
+
+  useEffect(() => {
+    axios.get(`${API_BASE}/api/user/hobbies`)
+      .then((res) => {
+        setHobbies(res.data.data
+          .replace(/^\[|\]$/g, "")
+          .split(","));
+      })
+      .catch((err) => {
+        console.error("获取 Article 失败", err);
+      });
+  }, []);
+
+  console.info(hobbies)
+
   return (
     <Card 
       title='爱好'

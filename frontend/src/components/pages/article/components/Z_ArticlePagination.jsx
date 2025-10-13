@@ -21,7 +21,7 @@ const Z_ArticlePagination = () => {
         params: { page, pageSize: PAGE_SIZE },
       });
 
-      const body = res.data;
+      const body = res.data.data;
       let list = [];
       let totalCount = 0;
 

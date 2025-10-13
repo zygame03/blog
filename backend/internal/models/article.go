@@ -89,15 +89,14 @@ func GetArticlesByPopular(db *gorm.DB, limit int) ([]ArticleVO, error) {
 func GetArticleByID(db *gorm.DB, ID int) (Article, error) {
 	var article Article
 
-	result := db.Where("id = ?", ID).First(&article)
+	result := db.First(&article, ID)
 	if result.Error != nil {
 		return article, result.Error
 	}
 
 	result = db.Model(&article).
-		Where("id = ?", ID).
 		UpdateColumn("views", gorm.Expr("views + ?", 1))
-	if result != nil {
+	if result.Error != nil {
 		return article, result.Error
 	}
 

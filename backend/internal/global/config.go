@@ -55,7 +55,7 @@ func InitDatabase(conf *DatabaseConfig) *gorm.DB {
 	// 自动迁移
 	err = database.AutoMigrate(
 		&models.Article{},
-		&models.Profile{},
+		&models.User{},
 		// 其他模型可继续添加
 	)
 	if err != nil {

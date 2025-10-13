@@ -1,41 +1,70 @@
 package models
 
 import (
-	"database/sql/driver"
-	"encoding/json"
-	"fmt"
-
 	"gorm.io/gorm"
 )
 
-type Links struct {
-	Github   string `json:"github"`
-	Bilibili string `json:"bilibili"`
-}
-
-func (l Links) Value() (driver.Value, error) {
-	return json.Marshal(l)
-}
-
-func (l *Links) Scan(value any) error {
-	bytes, ok := value.([]byte)
-	if !ok {
-		return fmt.Errorf("Links: Scan source is not []byte")
-	}
-	return json.Unmarshal(bytes, l)
-}
-
-type Profile struct {
-	ID        uint   `gorm:"primaryKey"`
+type User struct {
+	Model
 	Avatar    string `json:"avatar"`
 	Name      string `json:"name"`
 	Signature string `json:"signature"`
-	Links     Links  `json:"links" gorm:"type:json"`
-	Notice    string `json:"notice"`
+	Github    string `json:"github"`
+	Bilibili  string `json:"bilibili"`
+	Skills    string `json:"skills"`
+	Hobbies   string `json:"hobbies"`
+}
+
+type Profile struct {
+	Model
+	Avatar    string `json:"avatar"`
+	Name      string `json:"name"`
+	Signature string `json:"signature"`
+}
+
+func GetUser(db *gorm.DB) (User, error) {
+	var user User
+
+	result := db.First(&user, 1)
+	if result.Error != nil {
+		return user, result.Error
+	}
+
+	return user, nil
 }
 
 func GetProfile(db *gorm.DB) (Profile, error) {
 	var profile Profile
-	db.Find(&profile)
+
+	result := db.Select("id, created_at, updated_at, avatar, name, signature").
+		First(&profile)
+	if result.Error != nil {
+		return profile, result.Error
+	}
+
 	return profile, nil
+}
+
+func GetSkills(db *gorm.DB) (string, error) {
+	var user User
+
+	result := db.Select("skills").
+		First(&user)
+	if result.Error != nil {
+		return "", result.Error
+	}
+
+	return user.Skills, nil
+}
+
+func GetHobbies(db *gorm.DB) (string, error) {
+	var user User
+
+	result := db.Select("hobbies").
+		First(&user)
+	if result.Error != nil {
+		return "", result.Error
+	}
+
+	return user.Hobbies, nil
 }

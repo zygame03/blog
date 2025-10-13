@@ -20,7 +20,7 @@ const Z_ArticleDetail = () => {
   useEffect(() => {
     axios.get(`${API_BASE}/api/article/${id}`)
       .then((res) => {
-        setArticle(res.data);
+        setArticle(res.data.data);
       })
       .catch((err) => {
         console.error("获取 Article 失败", err);

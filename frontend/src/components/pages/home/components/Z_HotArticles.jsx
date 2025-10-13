@@ -15,14 +15,12 @@ const Z_HotArticles = () => {
   useEffect(() => {
     axios.get(`${API_BASE}/api/article/hotArticles`)
       .then((res) => {
-        getArticles(res.data); // axios 已经解析好了 JSON
+        getArticles(res.data.data); // axios 已经解析好了 JSON
       })
       .catch((err) => {
         console.error("获取 hotArticles 失败", err);
       });
   }, []);
-  
-  const navigate = useNavigate();
 
   return (
     <Row gutter={[16, 16]}>

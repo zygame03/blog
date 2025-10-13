@@ -26,7 +26,7 @@ const Z_ProfileCard = () => {
   useEffect(() => {
     axios.get(`${API_BASE}/api/user/profile`)
       .then((res) => {
-        setProfile(res.data); // axios 已经解析好了 JSON
+        setProfile(res.data.data); // axios 已经解析好了 JSON
         setLoading(false);
       })
       .catch((err) => {
@@ -34,7 +34,6 @@ const Z_ProfileCard = () => {
         setLoading(false); // 失败时仍然展示 fallback
       });
   }, []);
-
 
   return (
     <Card 
@@ -52,11 +51,11 @@ const Z_ProfileCard = () => {
 
           <Text type="secondary">{profile.signature}</Text>
 
-          <Divider />
+          {/* <Divider />
 
           <div style={{ fontSize: 32 }}>
             <a 
-              href={profile.links.github} 
+              href={profile.github} 
               target="_blank" 
               rel="noreferrer" 
               style={{ marginRight: 16, color: '#000' }}
@@ -64,7 +63,7 @@ const Z_ProfileCard = () => {
               <GithubOutlined />
             </a>
             <a 
-              href={profile.links.bilibili} 
+              href={profile.bilibili} 
               target="_blank" 
               rel="noreferrer" 
               style={{ color: '#000' }}
@@ -73,9 +72,7 @@ const Z_ProfileCard = () => {
             </a>
           </div>
 
-          <Divider />
-
-          <Text strong>{profile.notice}</Text>
+          <Divider /> */}
         </>
       )}
     </Card>

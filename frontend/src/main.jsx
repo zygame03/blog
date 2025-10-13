@@ -54,7 +54,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       token: {
         colorPrimary: "#ff4d4f",
         fontSize: 16,
-        colorText: "#222",
+        colorText: "#151515ff",
       },
       components: {
         Layout: {
@@ -67,7 +67,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           
         },
         Card: {
-          boxShadow: '0 4px 12px rgba(255, 165, 130, 0.25)',  
+          boxShadow: '0 3px 8px rgba(255, 165, 130, 0.25)',  
           colorBgContainer: "rgba(255, 255, 255, 0.25)",
           colorBorderSecondary: "rgba(255, 255, 255, 0.3)",
           borderRadiusLG: 16,

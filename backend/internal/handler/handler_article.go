@@ -10,19 +10,24 @@ import (
 
 type Article struct{}
 
-func (*Article) GetAllArticles(c *gin.Context) {
+func (*Article) GetArticles(c *gin.Context) {
 	db := GetDB(c)
 
-	// page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
-	// pageSize, _ := strconv.Atoi(c.DefaultQuery("pageSize", "10"))
+	page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
+	size, _ := strconv.Atoi(c.DefaultQuery("pageSize", "10"))
 
-	data, _, err := models.GetArticlesList(db)
+	data, total, err := models.GetArticlesByPage(db, page, size)
 	if err != nil {
 		ReturnResponse(c, global.ErrDBOp, err)
 		return
 	}
 
-	ReturnSuccess(c, data)
+	ReturnSuccess(c, PageResult[models.Article]{
+		Page:  page,
+		Size:  size,
+		Total: int(total),
+		Data:  data,
+	})
 }
 
 func (*Article) GetHotArticles(c *gin.Context) {
@@ -33,15 +38,6 @@ func (*Article) GetHotArticles(c *gin.Context) {
 		ReturnResponse(c, global.ErrDBOp, err)
 		return
 	}
-
-	ReturnSuccess(c, data)
-}
-
-// 获取文章时间线
-func (*Article) GetArticleTimeLine(c *gin.Context) {
-	db := GetDB(c)
-
-	data, _, _ := models.GetArticlesByTime(db, 10)
 
 	ReturnSuccess(c, data)
 }
