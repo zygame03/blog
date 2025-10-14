@@ -24,8 +24,8 @@ const Z_HoverLineBox = ({
         transition: `all ${duration}ms ease`,
         transform: hovered ? `scale(${hoverScale})` : "scale(1)",
         boxShadow: hovered
-          ? '0 6px 20px rgba(255, 165, 130, 0.35)'
-          : '0 4px 12px rgba(255, 165, 130, 0.25)',
+          ? '0 4px 12px rgba(255, 128, 105, 0.5)'
+          : '0 3px 8px rgba(255, 136, 118, 0.3)',
         ...style,
       }}
     >

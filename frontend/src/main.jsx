@@ -2,6 +2,8 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import { AnimatePresence, motion } from "framer-motion";
+import { Z_ThemeProvider } from "./contexts/ThemeContext";
+import { createContext, useContext, useState, useEffect } from "react";
 
 import "./style/index.css";
 import "devicon/devicon.min.css";
@@ -49,37 +51,10 @@ function AnimatedRoutes() {
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <ConfigProvider
-    theme={{
-      token: {
-        colorPrimary: "#ff4d4f",
-        fontSize: 16,
-        colorText: "#151515ff",
-      },
-      components: {
-        Layout: {
-          headerBg: "transparent",
-          bodyBg: "transparent",
-          footerBg: "transparent",
-          siderBg: "transparent",
-        },
-        Menu: {
-          
-        },
-        Card: {
-          boxShadow: '0 3px 8px rgba(255, 165, 130, 0.25)',  
-          colorBgContainer: "rgba(255, 255, 255, 0.25)",
-          colorBorderSecondary: "rgba(255, 255, 255, 0.3)",
-          borderRadiusLG: 16,
-          width: '100%',
-          // borderRadius: 16,
-        },
-      },
-    }}
-  >
-    <BrowserRouter>
+  <BrowserRouter>
+    <Z_ThemeProvider>
       <Z_ScrollToTop />
       <AnimatedRoutes />
-    </BrowserRouter>
-  </ConfigProvider>
+    </Z_ThemeProvider>
+  </BrowserRouter>
 );

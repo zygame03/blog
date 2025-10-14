@@ -36,7 +36,8 @@ func GetUser(db *gorm.DB) (User, error) {
 func GetProfile(db *gorm.DB) (Profile, error) {
 	var profile Profile
 
-	result := db.Select("id, created_at, updated_at, avatar, name, signature").
+	result := db.Model(&User{}).
+		Select("id, created_at, updated_at, avatar, name, signature").
 		First(&profile)
 	if result.Error != nil {
 		return profile, result.Error

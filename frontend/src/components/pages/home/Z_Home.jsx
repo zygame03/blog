@@ -50,7 +50,6 @@ const Z_Home = () => {
           }
         `}
       </style>
-    {/* </Z_Background> */}
     </>
   );
 };
