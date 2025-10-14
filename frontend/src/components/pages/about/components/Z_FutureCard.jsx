@@ -7,9 +7,6 @@ const Z_FutureCard = ({ goals = [] }) => {
   return (
     <Card 
       title="未来计划"
-      style={{
-        boxShadow: '0 4px 12px rgba(255, 165, 130, 0.25)',
-      }}
     >
       <List
         dataSource={goals}

@@ -9,6 +9,7 @@ import Z_HobbiesCard from './components/Z_HobbiesCard';
 import Z_AboutSite from './components/Z_AboutSite';
 // import Z_FocusCard from './components/Z_FocusCard';
 import Z_FutureCard from './components/Z_FutureCard';
+import Z_Footer from '../../layout/Z_Footer';
 // import Z_ContactCard from './components/Z_ContactCard';
 
 const { Footer } = Layout;
@@ -85,9 +86,7 @@ const Z_AboutMe = () => {
           </Row>
         </Z_Content>
 
-        <Footer style={{ textAlign: 'center' }}>
-          ©{new Date().getFullYear()} zygame | Built with React + Go
-        </Footer>
+        <Z_Footer />
       </Layout>
     </>
   );

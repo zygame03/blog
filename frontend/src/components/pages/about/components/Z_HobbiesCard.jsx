@@ -26,9 +26,6 @@ const Z_HobbiesCard = () => {
   return (
     <Card 
       title='爱好'
-      style={{
-        boxShadow: '0 4px 12px rgba(255, 165, 130, 0.25)',
-      }}
     >
       <div style={{ marginTop: 12 }}>
         {hobbies.length > 0 ? (

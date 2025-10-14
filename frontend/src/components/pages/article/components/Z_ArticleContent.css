@@ -1,0 +1,17 @@
+#article-content pre {
+  background-color: var(--code-bg);
+  color: var(--code-color);
+  padding: 12px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+#article-content code {
+  background-color: var(--code-bg);
+  color: var(--code-color);
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 13px;
+}

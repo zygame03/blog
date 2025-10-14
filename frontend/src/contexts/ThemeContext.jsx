@@ -35,29 +35,13 @@ export const Z_ThemeProvider = ({ children }) => {
   };
 
   // 给 antd 的 Layout、Card 组件设置样式
-  const components = {
-    // Layout: {
-    //   headerBg: "transparent",
-    //   bodyBg: "transparent",
-    //   footerBg: "transparent",
-    //   siderBg: "transparent",
-    // },
-    // Card: {
-    //   boxShadow:
-    //     themeMode === "dark"
-    //       ? "0 3px 8px rgba(191, 191, 191, 0.3)"
-    //       : "0 3px 8px rgba(255, 165, 130, 0.25)",
-    //   colorBgContainer:
-    //     themeMode === "dark"
-    //       ? "rgba(0, 0, 0, 0.85)"
-    //       : "rgba(255,255,255,0.25)",
-    //   colorBorderSecondary:
-    //     themeMode === "dark"
-    //       ? "rgba(145, 145, 145, 0.15)"
-    //       : "rgba(255,255,255,0.3)",
-    //   borderRadiusLG: 16,
-    // },
-  };
+const components = {
+  Layout: {
+    headerBg: "transparent",
+    bodyBg: "transparent",
+    footerBg: "transparent",
+  },
+};
 
   return (
     <ThemeContext.Provider value={{ themeMode, toggleTheme }}>

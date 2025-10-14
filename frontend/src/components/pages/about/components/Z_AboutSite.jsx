@@ -12,11 +12,8 @@ const Z_AboutSite = ({ siteInfo }) => {
   };
 
   return (
-    <Card 
+    <Card
       title='关于本站'
-      style={{
-        boxShadow: '0 4px 12px rgba(255, 165, 130, 0.25)',
-      }}
     >
       <Paragraph>{info.text}</Paragraph>
       <Paragraph type="secondary">

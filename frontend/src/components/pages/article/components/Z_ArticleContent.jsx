@@ -4,8 +4,11 @@ import { Markdown } from "@ant-design/pro-editor";
 
 const { Title, Text } = Typography;
 
+import { useAppTheme } from "../../../../contexts/ThemeContext";
+
 const Z_ArticleContent = ({ article }) => {
   const { title, authorName, createdAt, content, tags, desc } = article;
+  const { themeMode } = useAppTheme();
 
   useEffect(() => {
     // 扫描 Markdown 渲染结果中的 h1-h6
@@ -19,11 +22,7 @@ const Z_ArticleContent = ({ article }) => {
   }, [content]);
 
   return (
-    <Card
-      style={{
-        boxShadow: '0 4px 12px rgba(255, 165, 130, 0.25)',
-      }}
-    >
+    <Card>
       <Title level={3} style={{ margin: 0 }}>
         {title}
       </Title>
@@ -54,7 +53,7 @@ const Z_ArticleContent = ({ article }) => {
         </div>
       )}
 
-      <div id="article-content">
+      <div>
         <Markdown>{content}</Markdown>
       </div>
     </Card>

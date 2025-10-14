@@ -60,7 +60,7 @@ const Z_Header = () => {
         }
         style={{
           color: themeMode === "light" ? "#000" : "#fff",
-          transition: "all 0.3s",
+          transition: "all 0.2s",
         }}
         onMouseEnter={(e) =>
           (e.currentTarget.style.backgroundColor =

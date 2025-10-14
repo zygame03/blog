@@ -8,7 +8,7 @@ import {
   TagsOutlined,
 } from "@ant-design/icons";
 
-import Z_FancyHoverBox from "./Z_FancyHoverBox"
+import Z_FancyHoverBox from "./Z_FancyHoverBox";
 
 const { Paragraph, Title, Text } = Typography;
 
@@ -67,10 +67,10 @@ const Z_ArticleInfoCard = ({ item }) => {
           {item.desc || "暂无简介"}
         </Paragraph>
 
-        <Divider style={{ margin: "12px 0" }} />
+        <Divider style={{ margin: "8px 0" }} />
 
         {/* 作者、时间、浏览数、标签 */}
-        <Space size={[16, 8]} wrap style={{ fontSize: 14 }}>
+        <Space size={[16, 8]} wrap style={{ fontSize: 16 }}>
           <Text type="secondary">
             <UserOutlined /> {item.authorName ?? "未知作者"}
           </Text>
@@ -92,7 +92,7 @@ const Z_ArticleInfoCard = ({ item }) => {
                 .map((tag) => tag.trim())
                 .filter((tag) => tag.length > 0)
                 .map((tag, idx) => (
-                  <Tag key={idx} color="#ff4d50a8" style={{ marginInlineEnd: 4 }}>
+                  <Tag key={idx} color="#ff4d50a8" style={{ marginInlineEnd: 6 }}>
                     {tag}
                   </Tag>
                 ))

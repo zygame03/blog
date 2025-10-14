@@ -1,6 +1,7 @@
 import Z_Header from '../../layout/Z_Header';
 import Z_ArticlePagination from './components/Z_ArticlePagination';
 import Z_Content from '../../layout/Z_Content';
+import Z_Footer from '../../layout/Z_Footer';
 
 import { Layout, Row, Col } from 'antd';
 
@@ -27,13 +28,7 @@ const Z_Article = () => {
 
         </Z_Content>
         
-        <Footer
-          style={{
-            textAlign: 'center',
-          }}
-        >
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
-        </Footer>
+        <Z_Footer />
       </Layout>
 
       <style>

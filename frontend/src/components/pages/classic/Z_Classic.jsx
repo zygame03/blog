@@ -1,4 +1,5 @@
 import Z_Header from '../../layout/Z_Header';
+import Z_Footer from '../../layout/Z_Footer';
 
 import { Typography, Layout, Row, Col } from 'antd';
 
@@ -22,13 +23,7 @@ const Z_Classic = () => {
           <Title level={4}>施工中...</Title>
         </Content>
         
-        <Footer
-          style={{
-            textAlign: 'center',
-          }}
-        >
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
-        </Footer>
+        <Z_Footer />
       </Layout>
     </div>
   );

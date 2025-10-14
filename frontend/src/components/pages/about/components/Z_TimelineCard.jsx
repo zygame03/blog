@@ -7,9 +7,6 @@ const Z_TimelineCard = ({ timeline = [] }) => {
   return (
     <Card
       title="时间经历"
-      style={{
-        boxShadow: '0 4px 12px rgba(255, 165, 130, 0.25)',
-      }}
     >
       <Timeline
         items={timeline.map(item => ({

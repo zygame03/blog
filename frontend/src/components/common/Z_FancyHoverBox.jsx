@@ -1,12 +1,10 @@
 // src/components/common/Z_HoverLineBox.jsx
 import React, { useState } from "react";
 
-import { Card } from "antd";
-
-const Z_HoverLineBox = ({
+const Z_FancyHoverBox = ({
   children,
-  lineColor = "#ff4d4f", // 默认红色线条
-  lineHeight = 4, // 线条高度
+  lineColor = "#ff4d4f",
+  lineHeight = 4,
   borderRadius = 16,
   hoverScale = 1.01,
   duration = 300,
@@ -21,22 +19,13 @@ const Z_HoverLineBox = ({
       style={{
         position: "relative",
         borderRadius,
-        transition: `all ${duration}ms ease`,
+        transition: `transform ${duration}ms ease`,
         transform: hovered ? `scale(${hoverScale})` : "scale(1)",
-        boxShadow: hovered
-          ? '0 4px 12px rgba(255, 128, 105, 0.5)'
-          : '0 3px 8px rgba(255, 136, 118, 0.3)',
         ...style,
       }}
     >
       {/* 子元素区域 */}
-      <div
-        style={{
-          overflow: "hidden",
-          position: "relative",
-          zIndex: 1,
-        }}
-      >
+      <div style={{ position: "relative", zIndex: 1 }}>
         {children}
       </div>
 
@@ -49,8 +38,7 @@ const Z_HoverLineBox = ({
           height: lineHeight,
           width: hovered ? "100%" : "0%",
           backgroundColor: lineColor,
-          borderBottomLeftRadius: borderRadius,
-          borderBottomRightRadius: borderRadius,
+          borderRadius: lineHeight / 2,
           transition: `width ${duration}ms ease`,
           zIndex: 2,
         }}
@@ -59,4 +47,4 @@ const Z_HoverLineBox = ({
   );
 };
 
-export default Z_HoverLineBox;
+export default Z_FancyHoverBox

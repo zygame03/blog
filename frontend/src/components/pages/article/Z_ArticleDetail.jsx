@@ -8,6 +8,7 @@ import Z_Header from '../../layout/Z_Header';
 import Z_ArticleContent from './components/Z_ArticleContent';
 import Z_ArticleIndex from './components/Z_ArticleIndex';
 import Z_Content from '../../layout/Z_Content';
+import Z_Footer from '../../layout/Z_Footer';
 
 import { API_BASE } from '../../../api';
 
@@ -54,9 +55,7 @@ const Z_ArticleDetail = () => {
           </motion.div>
         </Z_Content>
 
-        <Footer style={{ textAlign: 'center' }}>
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
-        </Footer>
+        <Z_Footer />
       </Layout>
     </>
   );

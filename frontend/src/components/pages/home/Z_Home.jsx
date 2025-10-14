@@ -4,6 +4,7 @@ import Z_HotArticles from './components/Z_HotArticles';
 import Z_Content from '../../layout/Z_Content';
 // import Z_Background from '../../common/Z_Background';
 import Z_Background from './components/Z_Background';
+import Z_Footer from '../../layout/Z_Footer';
 
 import { Layout, Row, Col } from 'antd';
 
@@ -27,15 +28,8 @@ const Z_Home = () => {
               </Col>
             </Row>
         </Z_Content>
-
       
-        <Footer
-          style={{
-            textAlign: 'center',
-          }}
-        >
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
-        </Footer>
+        <Z_Footer />
       </Layout>
 
       <style>

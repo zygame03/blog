@@ -8,7 +8,6 @@ const Z_IntroCard = ({ text }) => {
     <Card
       style={{
         background: 'linear-gradient(135deg, #FFE0C2, #FFD1DC)',
-        boxShadow: '0 4px 12px rgba(255, 165, 130, 0.25)',
         textAlign: 'center',
         padding: '24px',
       }}
