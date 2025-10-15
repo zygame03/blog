@@ -22,6 +22,8 @@ func registerArticleHandler(r *gin.Engine) {
 		article.GET("", articleAPI.GetArticles)
 		article.GET("/hotArticles", articleAPI.GetHotArticles)
 		article.GET("/:id", articleAPI.GetArticleDetail)
+		article.POST("/save", articleAPI.SaveOrUpdateArticle)
+		article.GET("/delete", articleAPI.DeleteArticle)
 	}
 }
 

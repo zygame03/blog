@@ -20,6 +20,7 @@ type Article struct {
 	Tags       string `json:"tags"`                // 标签（逗号分隔形式）
 	Cover      string `json:"cover"`               // 封面
 	Status     uint   `json:"status"`              // 状态
+	IsDelete   bool   `json:"is_delete"`
 }
 
 type ArticleVO struct {
@@ -55,12 +56,16 @@ func GetArticlesByPage(db *gorm.DB, page, pageSize int) ([]Article, int64, error
 	var articles []Article
 	var total int64
 
-	result := db.Model(Article{}).Count(&total)
+	result := db.Model(Article{}).
+		Where("is_delete = false AND status = 0").
+		Count(&total)
 	if result.Error != nil {
 		return nil, 0, result.Error
 	}
 
-	result = db.Offset((page - 1) * pageSize).Limit(pageSize).Find(&articles)
+	result = db.Offset((page - 1) * pageSize).
+		Limit(pageSize).
+		Find(&articles)
 	if result.Error != nil {
 		return nil, 0, result.Error
 	}
@@ -70,14 +75,14 @@ func GetArticlesByPage(db *gorm.DB, page, pageSize int) ([]Article, int64, error
 
 // 获取热门文章，目前只基于view数，后续增加其他项综合判断
 func GetArticlesByPopular(db *gorm.DB, limit int) ([]ArticleVO, error) {
-	db = db.Model(Article{})
+	db = db.Model(&Article{})
 	var articles []ArticleVO
 
-	result := db.Order("views DESC").
+	result := db.Where("is_delete = false AND status = 0").
+		Order("views DESC").
 		Select("id, created_at, updated_at, title, author_name, views, tags, cover").
 		Limit(10).
 		Find(&articles)
-
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -86,15 +91,18 @@ func GetArticlesByPopular(db *gorm.DB, limit int) ([]ArticleVO, error) {
 }
 
 // 通过ID获取文章，获取后增加views
-func GetArticleByID(db *gorm.DB, ID int) (Article, error) {
+func GetArticleByID(db *gorm.DB, id int) (Article, error) {
 	var article Article
 
-	result := db.First(&article, ID)
+	result := db.First(&article, id)
 	if result.Error != nil {
 		return article, result.Error
 	}
 
-	result = db.Model(&article).
+	// todo 增加对已删除或已隐藏文章的判断
+
+	result = db.Model(&Article{}).
+		Where("id = ?", id).
 		UpdateColumn("views", gorm.Expr("views + ?", 1))
 	if result.Error != nil {
 		return article, result.Error
@@ -103,18 +111,36 @@ func GetArticleByID(db *gorm.DB, ID int) (Article, error) {
 	return article, nil
 }
 
-// 按时间排序获取前n篇文章
-func GetArticlesByTime(db *gorm.DB, limit int) ([]Article, int64, error) {
-	var total int64
-	var articles []Article
-
-	db.Model(&Article{}).Count(&total)
-	db.Order("created_at").Limit(limit).Find(&articles)
-
-	return articles, total, nil
-}
-
-// Todo！
+// Todo 按tags找文章
 func GetArticlesByTag(db *gorm.DB, limit int) ([]Article, error) {
 	return nil, nil
+}
+
+// 保存或更新文章
+func SaveOrUpdateArticle(db *gorm.DB, article *Article) error {
+	var result *gorm.DB
+
+	if article.ID == 0 {
+		result = db.Create(&article)
+	} else {
+		result = db.Model(&Article{}).
+			Where("id = ?", article.ID).
+			Updates(article)
+	}
+	if result.Error != nil {
+		return result.Error
+	}
+
+	return nil
+}
+
+func DeleteArticle(db *gorm.DB, id int) error {
+	result := db.Model(&Article{}).
+		Where("id = ? AND is_delete = false", id).
+		UpdateColumn("is_delete", true)
+	if result.Error != nil {
+		return result.Error
+	}
+
+	return nil
 }
