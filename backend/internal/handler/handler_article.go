@@ -1,9 +1,9 @@
 package handler
 
 import (
-	"fmt"
 	"my_web/backend/internal/global"
 	"my_web/backend/internal/models"
+	"my_web/backend/internal/service"
 	"strconv"
 	"time"
 
@@ -27,12 +27,12 @@ type ArticleReq struct {
 }
 
 func (*Article) GetArticles(c *gin.Context) {
-	db := GetDB(c)
-
 	page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
 	size, _ := strconv.Atoi(c.DefaultQuery("pageSize", "10"))
 
-	data, total, err := models.GetArticlesByPage(db, page, size)
+	db := GetDB(c)
+	service := service.NewArticleService(db)
+	data, total, err := service.GetArticlesByPage(page, size)
 	if err != nil {
 		ReturnResponse(c, global.ErrDBOp, err)
 		return
@@ -48,8 +48,9 @@ func (*Article) GetArticles(c *gin.Context) {
 
 func (*Article) GetHotArticles(c *gin.Context) {
 	db := GetDB(c)
+	service := service.NewArticleService(db)
 
-	data, err := models.GetArticlesByPopular(db, 10)
+	data, err := service.GetArticlesByPopular(10)
 	if err != nil {
 		ReturnResponse(c, global.ErrDBOp, err)
 		return
@@ -60,64 +61,19 @@ func (*Article) GetHotArticles(c *gin.Context) {
 
 // 获取文章详情（带正文）
 func (*Article) GetArticleDetail(c *gin.Context) {
-	db := GetDB(c)
-
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		ReturnResponse(c, global.ErrDBOp, err)
 		return
 	}
 
-	data, err := models.GetArticleByID(db, id)
+	db := GetDB(c)
+	service := service.NewArticleService(db)
+	data, err := service.GetArticleByID(id)
 	if err != nil {
 		ReturnResponse(c, global.ErrDBOp, err)
 		return
 	}
 
 	ReturnSuccess(c, data)
-}
-
-func (*Article) SaveOrUpdateArticle(c *gin.Context) {
-	db := GetDB(c)
-	var data ArticleReq
-
-	err := c.ShouldBindJSON(data)
-	if err != nil {
-		ReturnResponse(c, global.FailResult, err)
-	}
-
-	article := models.Article{
-		Model:      models.Model{ID: data.ID},
-		Title:      data.Title,
-		Desc:       data.Desc,
-		Content:    data.Content,
-		AuthorName: data.AuthorName,
-		Views:      data.Views,
-		Tags:       data.Tags,
-		Cover:      data.Cover,
-		Status:     data.Status,
-	}
-
-	err = models.SaveOrUpdateArticle(db, &article)
-	if err != nil {
-		ReturnResponse(c, global.FailResult, err)
-		return
-	}
-
-	ReturnSuccess(c, article)
-}
-
-func (*Article) DeleteArticle(c *gin.Context) {
-	id, _ := strconv.Atoi(c.DefaultQuery("id", "0"))
-
-	fmt.Println(id, "111")
-	db := GetDB(c)
-
-	err := models.DeleteArticle(db, id)
-	if err != nil {
-		ReturnResponse(c, global.ErrDBOp, err)
-		return
-	}
-
-	ReturnSuccess(c, nil)
 }
