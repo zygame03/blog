@@ -1,29 +1,18 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { Card, Typography } from "antd";
-
-import { useAppTheme } from "../../../../contexts/ThemeContext";
-import Z_SkillIconMap from "../../../common/Z_SkillIconMap";
-import { API_BASE } from "../../../../api";
+// src/components/pages/about/Z_SkillsCard.jsx
+import { Card, Typography, Spin, message } from "antd";
+import { useAppTheme } from "../../../contexts/ThemeContext";
+import Z_SkillIconMap from "../../common/Z_SkillIconMap";
+import { useSkills } from "../../../hooks/useSkills";
 
 const { Title } = Typography;
 
 const Z_SkillsCard = () => {
-  const [skills, setSkills] = useState([]);
-  const { themeMode } = useAppTheme(); // 🌙 取当前主题
+  const { skills, loading, error } = useSkills();
+  const { themeMode } = useAppTheme();
 
-  useEffect(() => {
-    axios
-      .get(`${API_BASE}/api/user/skills`)
-      .then((res) => {
-        const data = res.data?.data || "";
-        const arr = data.replace(/^\[|\]$/g, "").split(",");
-        setSkills(arr.filter(Boolean));
-      })
-      .catch((err) => {
-        console.error("获取 Skills 失败", err);
-      });
-  }, []);
+  if (error) {
+    message.error('技能加载失败');
+  }
 
   // 🎨 不同主题的样式
   const isDark = themeMode === "dark";
@@ -31,9 +20,7 @@ const Z_SkillsCard = () => {
   const textColor = isDark ? "#f0f0f0" : "#222";
 
   return (
-    <Card
-      title= "技能"
-    >
+    <Card title="技能">
       <div
         style={{
           display: "flex",
@@ -41,7 +28,9 @@ const Z_SkillsCard = () => {
           gap: 12,
         }}
       >
-        {skills && skills.length > 0 ? (
+        {loading ? (
+          <Spin size="small" />
+        ) : skills && skills.length > 0 ? (
           skills.map((skill, idx) => {
             const iconClass = Z_SkillIconMap[skill] || "devicon-devicon-plain";
             return (

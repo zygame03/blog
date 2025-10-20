@@ -204,3 +204,18 @@ body[data-theme='dark'] #article-content code {
   color: #f0f0f0;
 }
 
+/* 在组件的样式部分或全局样式中添加 */
+.deleted-row {
+  background-color: #f5f5f5 !important;
+  color: #999 !important;
+}
+
+.deleted-row td {
+  background-color: #f5f5f5 !important;
+  color: #999 !important;
+}
+
+.deleted-row .ant-tag {
+  background-color: #f0f0f0 !important;
+  color: #999 !important;
+}

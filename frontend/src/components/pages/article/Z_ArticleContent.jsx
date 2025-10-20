@@ -4,7 +4,7 @@ import { Markdown } from "@ant-design/pro-editor";
 
 const { Title, Text } = Typography;
 
-import { useAppTheme } from "../../../../contexts/ThemeContext";
+import { useAppTheme } from "../../../contexts/ThemeContext";
 
 const Z_ArticleContent = ({ article }) => {
   const { title, authorName, createdAt, content, tags, desc } = article;

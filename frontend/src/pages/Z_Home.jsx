@@ -1,10 +1,10 @@
-import Z_Header from '../../layout/Z_Header';
-import Z_ProfileCard from '../../common/Z_ProfileCard';
-import Z_HotArticles from './components/Z_HotArticles';
-import Z_Content from '../../layout/Z_Content';
+import Z_Header from '../components/layout/Z_Header';
+import Z_ProfileCard from '../components/pages/home/Z_ProfileCard';
+import Z_HotArticles from '../components/pages/home/Z_HotArticles';
+import Z_Content from '../components/layout/Z_Content';
 // import Z_Background from '../../common/Z_Background';
-import Z_Background from './components/Z_Background';
-import Z_Footer from '../../layout/Z_Footer';
+import Z_Background from '../components/pages/home/Z_Background';
+import Z_Footer from '../components/layout/Z_Footer';
 
 import { Layout, Row, Col } from 'antd';
 

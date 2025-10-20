@@ -32,6 +32,8 @@ export const Z_ThemeProvider = ({ children }) => {
     colorBgBase: themeMode === "dark" ? "#d6d6d6ff" : "#ffffff",
     colorText: themeMode === "dark" ? "#f0f0f0" : "#151515",
     fontSize: 16,
+    colorBorder: themeMode === "dark" ? "rgba(255,255,255,0.06)" : "#d9d9d9",
+    colorBorderSecondary: themeMode === "dark" ? "rgba(255,255,255,0.08)" : "#f0f0f0",
   };
 
   // 给 antd 的 Layout、Card 组件设置样式

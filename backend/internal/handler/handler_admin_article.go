@@ -32,13 +32,12 @@ func (*AdminArticle) AdminGetArticle(c *gin.Context) {
 
 func (*AdminArticle) AdminSaveOrUpdateArticle(c *gin.Context) {
 	var data ArticleReq
-	err := c.ShouldBindJSON(data)
+	err := c.ShouldBindJSON(&data)
 	if err != nil {
 		ReturnResponse(c, global.FailResult, err)
 	}
 
 	article := models.Article{
-		Model:      models.Model{ID: data.ID},
 		Title:      data.Title,
 		Desc:       data.Desc,
 		Content:    data.Content,
@@ -49,9 +48,19 @@ func (*AdminArticle) AdminSaveOrUpdateArticle(c *gin.Context) {
 		Status:     data.Status,
 	}
 
+	if data.ID > 0 {
+		article.ID = data.ID
+	}
+
 	db := GetDB(c)
 	service := service.NewAdminArticleService(db)
-	err = service.AdminSaveOrUpdateArticle(&article)
+
+	if data.ID > 0 {
+		err = service.AdminSaveOrUpdateArticle(&article)
+	} else {
+		err = service.AdminSaveOrUpdateArticle(&article)
+	}
+
 	if err != nil {
 		ReturnResponse(c, global.FailResult, err)
 		return
@@ -61,7 +70,7 @@ func (*AdminArticle) AdminSaveOrUpdateArticle(c *gin.Context) {
 }
 
 func (*AdminArticle) AdminDeleteArticle(c *gin.Context) {
-	id, _ := strconv.Atoi(c.DefaultQuery("id", "0"))
+	id, _ := strconv.Atoi(c.Param("id"))
 
 	db := GetDB(c)
 	service := service.NewAdminArticleService(db)

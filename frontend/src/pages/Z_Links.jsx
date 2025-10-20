@@ -1,6 +1,6 @@
-import Z_Header from '../../layout/Z_Header';
-import Z_Content from '../../layout/Z_Content';
-import Z_Footer from '../../layout/Z_Footer';
+import Z_Header from '../components/layout/Z_Header';
+import Z_Content from '../components/layout/Z_Content';
+import Z_Footer from '../components/layout/Z_Footer';
 
 import { Typography, Layout, Row, Col } from 'antd';
 
