@@ -19,7 +19,6 @@ func (s *AdminArticleService) AdminGetArticlesByPage(page, pageSize int) ([]mode
 	var total int64
 
 	result := s.DB.Model(models.Article{}).
-		Where("is_delete = false").
 		Count(&total)
 	if result.Error != nil {
 		return nil, 0, result.Error

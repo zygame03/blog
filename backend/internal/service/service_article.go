@@ -38,7 +38,9 @@ func (s *ArticleService) GetArticlesByPage(page, pageSize int) ([]models.Article
 		return nil, 0, result.Error
 	}
 
-	result = s.DB.Offset((page - 1) * pageSize).
+	result = s.DB.Model(models.Article{}).
+		Where("is_delete = false AND status = 0").
+		Offset((page - 1) * pageSize).
 		Limit(pageSize).
 		Find(&articles)
 	if result.Error != nil {
