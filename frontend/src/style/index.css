@@ -88,10 +88,10 @@ body {
 ======================================== */
 
 .ant-card {
-  background: rgba(248, 246, 243, 0.75);
+  background: rgb(252, 251, 248);
   backdrop-filter: blur(16px);
   border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(255, 148, 95, 0.25);
+  box-shadow: 0 2px 8px rgba(255, 148, 95, 0.18);
   transition: all 0.3s ease;
 }
 
@@ -101,12 +101,12 @@ body {
 }
 
 [data-theme="dark"] .ant-card {
-  background: rgba(25, 25, 25, 0.85);
-  box-shadow: 0 2px 8px rgba(216, 216, 216, 0.25);
+  background: rgba(17, 17, 17, 0.741);
+  box-shadow: 0 2px 8px rgba(216, 216, 216, 0.18);
 }
 
 [data-theme="dark"] .ant-card:hover {
-  box-shadow: 0 2px 8px rgba(216, 216, 216, 0.25);
+  box-shadow: 0 2px 8px rgba(216, 216, 216, 0.2);
 }
 
 /* ======================================

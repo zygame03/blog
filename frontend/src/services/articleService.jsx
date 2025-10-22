@@ -1,23 +1,26 @@
-// src/services/articleService.jsx
+// frontend/src/services/articleService.jsx
 import apiClient from './api';
 
 export const articleService = {
-  // 列表
+  // 前端用户接口
   getArticles: (page = 1, pagesize = 10, keyword = '') =>
     apiClient.get('/api/article', { params: { page, pageSize: pagesize, keyword } }),
 
-  // 详情
   getArticleById: (id) => apiClient.get(`/api/article/${id}`),
-
-  // 热门
   getHotArticles: () => apiClient.get('/api/article/hotArticles'),
+};
 
-  // 新增（后台）
-  createArticle: (payload) => apiClient.post('/api/admin/article', payload),
+export const adminArticleService = {
+  // 管理端接口
+  adminGetArticles: (page = 1, pagesize = 10) =>
+    apiClient.get('/api/admin/article', { params: { page, pagesize: pagesize,} }),
 
-  // 更新（后台）
-  updateArticle: (id, payload) => apiClient.put(`/api/admin/article/${id}`, payload),
-
-  // 删除（后台）
-  deleteArticle: (id) => apiClient.delete(`/api/admin/article/${id}`),
+  adminGetArticleById: (id) => apiClient.get(`/api/admin/article/${id}`),
+  
+  adminCreateArticle: (payload) => apiClient.post('/api/admin/article', payload),
+  adminUpdateArticle: (id, payload) => apiClient.put(`/api/admin/article/${id}`, payload),
+  adminDeleteArticle: (id) => apiClient.delete(`/api/admin/article/${id}`),
+  
+  // 如果需要恢复功能
+  adminRestoreArticle: (id) => apiClient.put(`/api/admin/article/${id}/restore`),
 };

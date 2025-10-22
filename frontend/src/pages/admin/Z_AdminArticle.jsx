@@ -1,7 +1,8 @@
-// src/pages/admin/Z_AdminArticles.jsx
+// frontend/src/pages/admin/Z_AdminArticle.jsx
 import { useEffect, useMemo, useState } from 'react';
 import { Card, Table, Button, Space, Modal, Form, Input, message, Tag, Popconfirm } from 'antd';
-import { articleService } from '../../services/articleService';
+import { adminArticleService } from '../../services/articleService';
+import { useAdminArticleActions } from '../../hooks/useAdminArticleActions';
 
 const { Search } = Input;
 
@@ -16,13 +17,15 @@ const Z_AdminArticles = () => {
   const [loading, setLoading] = useState(false);
 
   const [open, setOpen] = useState(false);
-  const [editing, setEditing] = useState(null); // 记录正在编辑的行
+  const [editing, setEditing] = useState(null);
   const [form] = Form.useForm();
+
+  const { createArticle, updateArticle, deleteArticle, restoreArticle, loading: actionLoading } = useAdminArticleActions();
 
   const fetchList = async (p = page, ps = pageSize, k = keyword) => {
     setLoading(true);
     try {
-      const res = await articleService.getArticles(p, ps, k);
+      const res = await adminArticleService.adminGetArticles(p, ps, k);
       const data = res?.data?.data;
       let items = [];
       let count = 0;
@@ -66,12 +69,12 @@ const Z_AdminArticles = () => {
       title: record.title ?? '',
       desc: record.desc ?? '',
       content: record.content ?? '',
-      authorName: 'zygame',  // 添加作者名
-      views: 0,  // 初始浏览数
+      authorName: 'zygame',
+      views: 0,
       tags: typeof record.tags === 'string' ? record.tags.split(',').map(t => t.trim()).filter(Boolean).join(',') : '',
-      cover: '',  // 封面图片
-      status: 0,  // 状态：0-公开，1-私有，2-保护
-      });
+      cover: '',
+      status: 0,
+    });
     setOpen(true);
   };
 
@@ -82,19 +85,12 @@ const Z_AdminArticles = () => {
       desc: values.desc,
       content: values.content,
       tags: typeof values.tags === 'string' ? values.tags.split(',').map(t => t.trim()).filter(Boolean) : [],
-      // 确保新建时不包含 ID 字段
-      // 编辑时 ID 通过 URL 参数传递，不在 payload 中
     };
-    
     try {
       if (editing?.id) {
-        // 编辑时，ID 通过 URL 参数传递
-        await articleService.updateArticle(editing.id, payload);
-        message.success('更新成功');
+        await updateArticle(editing.id, payload);
       } else {
-        // 新建时，不包含任何 ID 信息
-        await articleService.createArticle(payload);
-        message.success('创建成功');
+        await createArticle(payload);
       }
       setOpen(false);
       setEditing(null);
@@ -105,16 +101,24 @@ const Z_AdminArticles = () => {
     }
   };
 
+  // 删除文章
   const handleDelete = async (record) => {
     try {
-      await articleService.deleteArticle(record.id);
-      message.success('删除成功');
-      // 删除后如当前页空了，回退一页
-      const nextPage = (list.length === 1 && page > 1) ? page - 1 : page;
-      setPage(nextPage);
-      fetchList(nextPage, pageSize, keyword);
+      await deleteArticle(record.id);
+      fetchList(page, pageSize, keyword);
     } catch (e) {
       message.error('删除失败');
+      console.error(e);
+    }
+  };
+
+  // 恢复文章
+  const handleRestore = async (record) => {
+    try {
+      await restoreArticle(record.id);
+      fetchList(page, pageSize, keyword);
+    } catch (e) {
+      message.error('恢复失败');
       console.error(e);
     }
   };
@@ -150,14 +154,30 @@ const Z_AdminArticles = () => {
           {!record.is_delete && (
             <Button type="link" onClick={() => openEdit(record)}>编辑</Button>
           )}
-          <Popconfirm 
-            title={record.is_delete ? "确认恢复？" : "确认删除？"} 
-            onConfirm={() => handleDelete(record)}
-          >
-            <Button type="link" danger={!record.is_delete}>
-              {record.is_delete ? '恢复' : '删除'}
-            </Button>
-          </Popconfirm>
+          
+          {record.is_delete ? (
+            <Popconfirm 
+              title="确认恢复这篇文章？" 
+              onConfirm={() => handleRestore(record)}
+              okText="恢复"
+              cancelText="取消"
+            >
+              <Button type="link" style={{ color: '#52c41a' }}>
+                恢复
+              </Button>
+            </Popconfirm>
+          ) : (
+            <Popconfirm 
+              title="确认删除这篇文章？" 
+              onConfirm={() => handleDelete(record)}
+              okText="删除"
+              cancelText="取消"
+            >
+              <Button type="link" danger>
+                删除
+              </Button>
+            </Popconfirm>
+          )}
         </Space>
       )
     }
@@ -180,7 +200,7 @@ const Z_AdminArticles = () => {
     >
       <Table
         rowKey="id"
-        loading={loading}
+        loading={loading || actionLoading}
         columns={columns}
         dataSource={list}
         rowClassName={(record) => record.is_delete ? 'deleted-row' : ''}

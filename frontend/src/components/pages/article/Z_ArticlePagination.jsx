@@ -44,7 +44,7 @@ const Z_ArticlePagination = () => {
           </Divider>
           <Row gutter={[24, 24]}>
             {grouped[year].map((item) => (
-              <Col xl={24} md={24} xs={24} key={item.id}>
+              <Col xxl={24} xl={24} md={24} xs={24} key={item.id}>
                 <Z_ArticleInfoCard item={item} />
               </Col>
             ))}
