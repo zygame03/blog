@@ -2,43 +2,37 @@ package handler
 
 import (
 	"my_web/backend/internal/global"
-	"my_web/backend/internal/models"
 	"my_web/backend/internal/service"
 	"strconv"
-	"time"
 
 	"github.com/gin-gonic/gin"
 )
 
 type Article struct{}
 
-type ArticleReq struct {
-	ID         int       `json:"id"`
-	CreatedAt  time.Time `json:"created_at"`
-	UpdatedAt  time.Time `json:"updated_at"`
-	Title      string    `json:"title"`               // 标题
-	Desc       string    `json:"desc" gorm:"text"`    // 描述
-	Content    string    `json:"content" gorm:"text"` // 正文
-	AuthorName string    `json:"authorName"`          // 作者
-	Views      uint      `json:"views"`               // 浏览数
-	Tags       string    `json:"tags"`                // 标签（逗号分隔形式）
-	Cover      string    `json:"cover"`               // 封面
-	Status     uint      `json:"status"`              // 状态
-}
-
+// 获取文章列表
 func (*Article) GetArticles(c *gin.Context) {
-	page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
-	size, _ := strconv.Atoi(c.DefaultQuery("pageSize", "10"))
+	page, err := strconv.Atoi(c.DefaultQuery("page", "1"))
+	if err != nil {
+		ReturnResponse(c, global.ErrRequset, err)
+		return
+	}
+
+	size, err := strconv.Atoi(c.DefaultQuery("pageSize", "10"))
+	if err != nil {
+		ReturnResponse(c, global.ErrRequset, err)
+		return
+	}
 
 	db := GetDB(c)
-	service := service.NewArticleService(db)
-	data, total, err := service.GetArticlesByPage(page, size)
+	s := service.NewArticleService(db)
+	data, total, err := s.GetArticlesByPage(page, size)
 	if err != nil {
 		ReturnResponse(c, global.ErrDBOp, err)
 		return
 	}
 
-	ReturnSuccess(c, PageResult[models.Article]{
+	ReturnSuccess(c, PageResult[service.ArticleVO]{
 		Page:  page,
 		Size:  size,
 		Total: int(total),
@@ -48,9 +42,9 @@ func (*Article) GetArticles(c *gin.Context) {
 
 func (*Article) GetHotArticles(c *gin.Context) {
 	db := GetDB(c)
-	service := service.NewArticleService(db)
+	s := service.NewArticleService(db)
 
-	data, err := service.GetArticlesByPopular(10)
+	data, err := s.GetArticlesByPopular(10)
 	if err != nil {
 		ReturnResponse(c, global.ErrDBOp, err)
 		return
@@ -63,13 +57,13 @@ func (*Article) GetHotArticles(c *gin.Context) {
 func (*Article) GetArticleDetail(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
-		ReturnResponse(c, global.ErrDBOp, err)
+		ReturnResponse(c, global.ErrRequset, err)
 		return
 	}
 
 	db := GetDB(c)
-	service := service.NewArticleService(db)
-	data, err := service.GetArticleByID(id)
+	s := service.NewArticleService(db)
+	data, err := s.GetArticleByID(id)
 	if err != nil {
 		ReturnResponse(c, global.ErrDBOp, err)
 		return

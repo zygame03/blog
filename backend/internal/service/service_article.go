@@ -2,7 +2,6 @@ package service
 
 import (
 	"my_web/backend/internal/models"
-	"time"
 
 	"gorm.io/gorm"
 )
@@ -16,19 +15,17 @@ func NewArticleService(db *gorm.DB) *ArticleService {
 }
 
 type ArticleVO struct {
-	ID         int       `json:"id"`
-	CreatedAt  time.Time `json:"created_at"`
-	UpdatedAt  time.Time `json:"updated_at"`
-	Title      string    `json:"title"`
-	AuthorName string    `json:"authorName"` // 作者
-	Views      uint      `json:"views"`      // 浏览数
-	Tags       string    `json:"tags"`       // 标签（逗号分隔形式）
-	Cover      string    `json:"cover"`      // 封面
+	models.Model
+	Title      string `json:"title"`
+	AuthorName string `json:"authorName"` // 作者
+	Views      uint   `json:"views"`      // 浏览数
+	Tags       string `json:"tags"`       // 标签（逗号分隔形式）
+	Cover      string `json:"cover"`      // 封面
 }
 
 // 分页查找
-func (s *ArticleService) GetArticlesByPage(page, pageSize int) ([]models.Article, int64, error) {
-	var articles []models.Article
+func (s *ArticleService) GetArticlesByPage(page, pageSize int) ([]ArticleVO, int64, error) {
+	var articles []ArticleVO
 	var total int64
 
 	result := s.DB.Model(models.Article{}).

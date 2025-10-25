@@ -5,7 +5,6 @@ import "gorm.io/gorm"
 const (
 	Public = iota
 	Private
-	Protect
 )
 
 type Article struct {

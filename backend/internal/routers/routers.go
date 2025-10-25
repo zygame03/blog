@@ -36,6 +36,8 @@ func registerUserHandler(r *gin.Engine) {
 		use.GET("/profile", userAPI.GetProfile)
 		use.GET("/hobbies", userAPI.GetHobbies)
 		use.GET("/skills", userAPI.GetSkills)
+		use.GET("/timeline", userAPI.GetTimeline)
+		use.GET("/futureGoals", userAPI.GetFutureGoals)
 	}
 }
 

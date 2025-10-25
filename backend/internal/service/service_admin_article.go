@@ -48,3 +48,11 @@ func (s *AdminArticleService) AdminDeleteArticle(id int) error {
 		UpdateColumn("is_delete", true).
 		Error
 }
+
+// 修改文章状态
+func (s *AdminArticleService) AdminChangeStatus(id, status int) error {
+	return s.DB.Model(&models.Article{}).
+		Where("id = ?", id).
+		UpdateColumn("status", status).
+		Error
+}

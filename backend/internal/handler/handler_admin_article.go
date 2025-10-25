@@ -5,21 +5,45 @@ import (
 	"my_web/backend/internal/models"
 	"my_web/backend/internal/service"
 	"strconv"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
 
 type AdminArticle struct{}
 
+type ArticleReq struct {
+	ID         int       `json:"id"`
+	CreatedAt  time.Time `json:"created_at"`
+	UpdatedAt  time.Time `json:"updated_at"`
+	Title      string    `json:"title"`               // 标题
+	Desc       string    `json:"desc" gorm:"text"`    // 描述
+	Content    string    `json:"content" gorm:"text"` // 正文
+	AuthorName string    `json:"authorName"`          // 作者
+	Views      uint      `json:"views"`               // 浏览数
+	Tags       string    `json:"tags"`                // 标签（逗号分隔形式）
+	Cover      string    `json:"cover"`               // 封面
+	Status     uint      `json:"status"`              // 状态
+}
+
 func (*AdminArticle) AdminGetArticle(c *gin.Context) {
-	page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
-	pagesize, _ := strconv.Atoi(c.DefaultQuery("pagesize", "10"))
+	page, err := strconv.Atoi(c.DefaultQuery("page", "1"))
+	if err != nil {
+		ReturnResponse(c, global.ErrRequset, err)
+		return
+	}
+	pagesize, err := strconv.Atoi(c.DefaultQuery("pagesize", "10"))
+	if err != nil {
+		ReturnResponse(c, global.ErrRequset, err)
+		return
+	}
 
 	db := GetDB(c)
-	service := service.NewAdminArticleService(db)
-	data, total, err := service.AdminGetArticlesByPage(page, pagesize)
+	s := service.NewAdminArticleService(db)
+	data, total, err := s.AdminGetArticlesByPage(page, pagesize)
 	if err != nil {
 		ReturnResponse(c, global.ErrDBOp, err)
+		return
 	}
 
 	ReturnSuccess(c, PageResult[models.Article]{
@@ -34,7 +58,8 @@ func (*AdminArticle) AdminSaveOrUpdateArticle(c *gin.Context) {
 	var data ArticleReq
 	err := c.ShouldBindJSON(&data)
 	if err != nil {
-		ReturnResponse(c, global.FailResult, err)
+		ReturnResponse(c, global.ErrRequset, err)
+		return
 	}
 
 	article := models.Article{
@@ -53,16 +78,16 @@ func (*AdminArticle) AdminSaveOrUpdateArticle(c *gin.Context) {
 	}
 
 	db := GetDB(c)
-	service := service.NewAdminArticleService(db)
+	s := service.NewAdminArticleService(db)
 
 	if data.ID > 0 {
-		err = service.AdminSaveOrUpdateArticle(&article)
+		err = s.AdminSaveOrUpdateArticle(&article)
 	} else {
-		err = service.AdminSaveOrUpdateArticle(&article)
+		err = s.AdminSaveOrUpdateArticle(&article)
 	}
 
 	if err != nil {
-		ReturnResponse(c, global.FailResult, err)
+		ReturnResponse(c, global.ErrDBOp, err)
 		return
 	}
 
@@ -73,12 +98,38 @@ func (*AdminArticle) AdminDeleteArticle(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 
 	db := GetDB(c)
-	service := service.NewAdminArticleService(db)
-	err := service.AdminDeleteArticle(id)
+	s := service.NewAdminArticleService(db)
+	err := s.AdminDeleteArticle(id)
 	if err != nil {
 		ReturnResponse(c, global.ErrDBOp, err)
 		return
 	}
 
 	ReturnSuccess(c, nil)
+}
+
+// id=?&status=?
+func (*AdminArticle) AdminChangeStatus(c *gin.Context) {
+	id, err := strconv.Atoi(c.DefaultQuery("id", "0"))
+	if err != nil {
+		ReturnResponse(c, global.ErrRequset, err)
+		return
+	}
+
+	status, err := strconv.Atoi(c.DefaultQuery("status", "0"))
+	if err != nil {
+		ReturnResponse(c, global.ErrRequset, err)
+		return
+	}
+
+	db := GetDB(c)
+	s := service.NewAdminArticleService(db)
+
+	err = s.AdminChangeStatus(id, status)
+	if err != nil {
+		ReturnResponse(c, global.ErrRequset, err)
+		return
+	}
+
+	ReturnSuccess(c, "success")
 }

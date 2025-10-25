@@ -42,8 +42,8 @@ func (*Auth) AdminLogin(c *gin.Context) {
 	}
 
 	db := GetDB(c)
-	service := service.NewAdminService(db)
-	user, err := service.Authenticate(req.Username, req.Password)
+	s := service.NewAdminService(db)
+	user, err := s.Authenticate(req.Username, req.Password)
 	if err != nil {
 		ReturnResponse(c, global.ErrDBOp, err)
 		return
