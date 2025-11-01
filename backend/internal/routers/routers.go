@@ -11,7 +11,6 @@ var (
 	articleAPI      handler.Article
 	adminArticleAPI handler.AdminArticle
 	userAPI         handler.User
-	authAPI         handler.Auth
 )
 
 func RegisterHandlers(r *gin.Engine) {
@@ -33,19 +32,20 @@ func registerUserHandler(r *gin.Engine) {
 	use := r.Group("api/user")
 	{
 		// use.GET("/:id", userAPI.GetUser)
+		use.POST("/login", userAPI.Login)
+		use.POST("/register", userAPI.Register)
 		use.GET("/profile", userAPI.GetProfile)
 		use.GET("/hobbies", userAPI.GetHobbies)
 		use.GET("/skills", userAPI.GetSkills)
 		use.GET("/timeline", userAPI.GetTimeline)
 		use.GET("/futureGoals", userAPI.GetFutureGoals)
+		use.GET("/intro", userAPI.GetIntro)
 	}
 }
 
 func registerAdminHandler(r *gin.Engine) {
 	admin := r.Group("/api/admin")
 	{
-		admin.POST("/login", authAPI.AdminLogin)
-
 		admin.Use(middleware.JWTAuth())
 		admin.GET("/article", adminArticleAPI.AdminGetArticle)
 		admin.GET("/article/:id", adminArticleAPI.AdminGetArticle)
